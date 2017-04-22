@@ -1,22 +1,10 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const db = require('../db/db.js');
 
-const companySchema = new Schema(
-	{
-		"_id": "ObjectId",
-		"Symbol": String,
-		"Name": String,
-		"LastSale": Number,
-		"MarketCap": String,
-		"IPOyear": String,
-		"Sector": String,
-		"industry": String,
-		"Summary Quote": String,
-		"": String
-	},
+const CompanySchema = db.Schema(
+	{ name: String },
 	{ collection: 'Company' }
 );
 
-const Company = mongoose.model('Company', companySchema);
+const Company = db.model('Company', CompanySchema);
 
 module.exports = Company;
