@@ -6,10 +6,6 @@ export default class SearchBarComponent extends Component {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleSearchTextChange = this.handleSearchTextChange.bind(this);
-
-        this.state = {
-
-        };
     }
 
     handleSearch() {

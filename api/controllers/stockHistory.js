@@ -14,11 +14,7 @@ module.exports = (symbol) => {
                 if (err) {
                     reject(err);
                 } else {
-                    quotes.forEach((quote, index) => {
-                        // Change to YYYY-MM-DD format
-                        quotes[index].date = quote.date.toISOString().split('T')[0];
-                    }, this);
-                    resolve(quotes)
+                    resolve(quotes);
                 }
             });
         }

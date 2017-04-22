@@ -13,11 +13,16 @@ export default class SearchResultsComponent extends Component {
     }
 
     componentWillReceiveProps(props) {
-        getStockSymbol(props.searchText).then((res) => {
-            this.setState({
-                searchResults: res
+        // Only want to fetch when the search text changes, not when other properties change
+        if (props.searchText !== this.state.searchText) {
+            getStockSymbol(props.searchText).then((res) => {
+                this.setState({
+                    searchText: props.searchText,
+                    searchResults: res
+                });
             });
-        });
+
+        }
     }
 
     getStockHistory(e) {
