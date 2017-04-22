@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const symbolSearchController = require('../controllers/symbolSearch.js');
 
-router.get('/', function (req, res, next) {
-    symbolSearchController(req.params.symbol)
+router.get('/:name', function (req, res, next) {
+    symbolSearchController(req.params.name)
         .then(response => {
             res.send(response);
         })

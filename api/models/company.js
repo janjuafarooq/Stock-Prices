@@ -1,7 +1,12 @@
 const db = require('../db/db.js');
 
 const CompanySchema = db.Schema(
-	{ name: String },
+	{
+		Symbol: String,
+		Name: String,
+		Sector: String,
+		industry: String,
+	},
 	{ collection: 'Company' }
 );
 
