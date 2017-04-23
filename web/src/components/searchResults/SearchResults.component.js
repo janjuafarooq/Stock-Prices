@@ -23,7 +23,8 @@ export default class SearchResultsComponent extends Component {
             getStockSymbol(props.searchText).then((res) => {
                 this.setState({
                     searchText: props.searchText,
-                    searchResults: res
+                    searchResults: res,
+                    noResults: res.length === 0
                 });
             });
         }

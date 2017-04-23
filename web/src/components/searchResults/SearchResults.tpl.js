@@ -19,22 +19,32 @@ export function SearchResultsTemplate(component) {
     });
 
     return (
-        <Table striped bordered responsive hover>
-            <thead>
-                {
-                    component.state.searchResults.length > 0 &&
-                    <tr>
-                        {/*TODO: Cleanup the styles*/}
-                        <th style={{ textAlign: 'center' }}>Company Symbol</th>
-                        <th style={{ textAlign: 'center' }}>Company Name</th>
-                        <th style={{ textAlign: 'center' }}>Sector</th>
-                        <th style={{ textAlign: 'center' }}>Industry</th>
-                    </tr>
-                }
-            </thead>
-            <tbody>
-                {searchResults}
-            </tbody>
-        </Table>
+        <div>
+            {
+                component.state.noResults &&
+                <div>
+                    No results found
+                </div>
+            }
+            {
+                component.state.searchResults.length > 0 &&
+                <Table striped bordered responsive hover>
+                    <thead>
+
+                        <tr>
+                            {/*TODO: Cleanup the styles*/}
+                            <th style={{ textAlign: 'center' }}>Company Symbol</th>
+                            <th style={{ textAlign: 'center' }}>Company Name</th>
+                            <th style={{ textAlign: 'center' }}>Sector</th>
+                            <th style={{ textAlign: 'center' }}>Industry</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {searchResults}
+                    </tbody>
+                </Table>
+            }
+
+        </div>
     );
 }
