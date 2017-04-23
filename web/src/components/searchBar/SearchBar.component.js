@@ -6,9 +6,11 @@ export default class SearchBarComponent extends Component {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleSearchTextChange = this.handleSearchTextChange.bind(this);
+        this.toggleAutocomplete = this.toggleAutocomplete.bind(this);
         this.state = {
             searchText: '',
-            showError: false
+            showError: false,
+            autocomplete: true
         };
     }
 
@@ -23,16 +25,33 @@ export default class SearchBarComponent extends Component {
     }
 
     handleSearchTextChange(event) {
-        if (event.charCode === 13) {
-            // Handle search on 'enter' or 'return' key
-            event.preventDefault();
-            this.handleSearch(event.target.value);
-        } else {
-            this.setState({
-                searchText: event.target.value,
+        const text = event.target.value;
+        if (this.state.autocomplete) {
+            this.setState(() => ({
+                searchText: text,
                 showError: false
-            })
+            }), () => {
+                this.handleSearch();
+            });
+        } else {
+            if (event.charCode === 13) {
+                // Handle search on 'enter' or 'return' key
+                event.preventDefault();
+                this.handleSearch(text);
+            } else {
+                this.setState({
+                    searchText: text,
+                    showError: false
+                });
+            }
         }
+    }
+
+    toggleAutocomplete(event) {
+        const checked = event.target.checked;
+        this.setState({
+            autocomplete: checked
+        });
     }
 
     render() {

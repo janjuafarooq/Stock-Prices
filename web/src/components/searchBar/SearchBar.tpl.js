@@ -12,6 +12,9 @@ export function SearchBarTemplate(component) {
                     </button>
                 </div>
             </div>
+            <div className="checkbox">
+                <label><input type="checkbox" defaultChecked onChange={component.toggleAutocomplete} value="" />Autocomplete search results</label>
+            </div>
             {
                 component.state.showError &&
                 <div className="alert alert-danger">
