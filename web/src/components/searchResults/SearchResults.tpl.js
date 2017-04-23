@@ -1,24 +1,25 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
 export function SearchResultsTemplate(component) {
     const searchResults = component.state.searchResults.map((result, index) => {
         return (
             <tr key={index}>
-                <td>
-                    <button className="btn btn-xs" type="button" value={result.Symbol} onClick={component.getStockHistory}>
+                {/*TODO: Cleanup the styles*/}
+                <td style={{ verticalAlign: 'middle' }}>
+                    <Button className="btn-s" type="button" value={result.Symbol} onClick={component.getStockHistory}>
                         {result.Symbol}
-                    </button>
+                    </Button>
                 </td>
-                <td>{result.Name}</td>
-                <td>{result.Sector}</td>
-                <td>{result.industry}</td>
+                <td style={{ verticalAlign: 'middle' }}>{result.Name}</td>
+                <td style={{ verticalAlign: 'middle' }}>{result.Sector}</td>
+                <td style={{ verticalAlign: 'middle' }}>{result.industry}</td>
             </tr>
         );
     });
 
     return (
-        <Table>
+        <Table striped bordered responsive hover>
             <thead>
                 {
                     component.state.searchResults.length > 0 &&
