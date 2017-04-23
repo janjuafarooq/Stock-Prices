@@ -1,7 +1,7 @@
 export function getStockHistory(symbol) {
     return new Promise(
         (resolve, reject) => {
-            const url = 'http://localhost:3001/stockHistory/' + symbol;
+            const url = '/stockHistory/' + symbol;
             const options = {
                 method: 'GET',
                 headers: {

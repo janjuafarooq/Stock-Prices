@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { SearchResultsTemplate } from './SearchResults.tpl.js';
-import { getStockSymbol } from '../../services/stockSymbol.js';
+import { getcompanyList } from '../../services/companyList.js';
 
 export default class SearchResultsComponent extends Component {
     constructor(props) {
@@ -18,7 +18,7 @@ export default class SearchResultsComponent extends Component {
 
     updatePage(e) {
         const nextPage = this.state.currentPage + parseInt(e.target.value, 10);
-        getStockSymbol(this.state.searchText, nextPage, this.pageSize).then((res) => {
+        getcompanyList(this.state.searchText, nextPage, this.pageSize).then((res) => {
             this.setState(() => ({
                 searchResults: res.data,
                 currentPage: nextPage
@@ -37,7 +37,7 @@ export default class SearchResultsComponent extends Component {
             });
         } else if (props.searchText !== this.state.searchText) {
             // Only want to fetch when the search text changes, not when other properties change
-            getStockSymbol(props.searchText).then((res) => {
+            getcompanyList(props.searchText).then((res) => {
                 this.setState(() => ({
                     searchText: props.searchText,
                     searchResults: res.data,
@@ -54,16 +54,12 @@ export default class SearchResultsComponent extends Component {
     }
 
     formatResultsText() {
-        let text = 'Showing results ';
-        if (this.state.pages === 1) {
-            text += '1-' + this.state.totalCount;
-        } else if (this.state.currentPage < this.state.pages) {
-            text += (this.pageSize * (this.state.currentPage - 1) + 1) + '-' + this.pageSize * this.state.currentPage;
+        let text = 'Showing results ' + (this.pageSize * (this.state.currentPage - 1) + 1) + '-'
+        if (this.state.currentPage < this.state.pages) {
+            text += this.pageSize * this.state.currentPage;
         } else if (this.state.currentPage === this.state.pages) {
-            text += (this.pageSize * (this.state.currentPage - 1) + 1) + '-' + this.state.totalCount;
+            text += this.state.totalCount;
         }
-        console.log(this.pageSize * this.state.currentPage);
-
         text += ' of ' + this.state.totalCount;
         this.setState({
             resultsText: text
