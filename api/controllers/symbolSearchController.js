@@ -1,6 +1,6 @@
 const Company = require('../models/companyModel.js');
-
-module.exports = (symbol) => {
+const paginate = require('mongoose-pagination');
+module.exports = (symbol, page, pageSize) => {
     return new Promise(
         (resolve, reject) => {
             Company
@@ -9,9 +9,14 @@ module.exports = (symbol) => {
                         { Name: { '$regex': symbol, '$options': 'i' } },
                         { Symbol: { '$regex': symbol, '$options': 'i' } }
                     ]
-                }).then(data => {
-                    resolve(data);
                 })
+                .paginate(page, pageSize, function (err, data, total) {
+                    resolve({
+                        data: data,
+                        pages: Math.ceil(total / pageSize),
+                        count: total
+                    });
+                });
         }
     )
 };
