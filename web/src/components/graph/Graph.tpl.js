@@ -18,14 +18,18 @@ export function GraphTemplate(component) {
 
     return (
         <div className="row">
-            <CandlestickChart
-                data={data}
-                width={500}
-                height={400}
-                xAxisTickInterval={{ unit: 'month', interval: 1 }}
-                yAxisOffset={-10}
-                title={"Historical data for " + component.state.symbol}
-            />
+            {component.state.historicalData.length > 0 &&
+                <CandlestickChart
+                    data={data}
+                    width={1000}
+                    height={500}
+                    xAxisTickInterval={{ unit: 'month', interval: 1 }}
+                    yAxisOffset={-10}
+                    fillUp={(value) => '#32CD32'}
+                    fillDown={(value) => '#DC143C'}
+                    title={"Historical data for " + component.state.symbol}
+                />
+            }
         </div>
     );
 }
