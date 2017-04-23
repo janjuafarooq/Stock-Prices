@@ -1,16 +1,14 @@
 import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 
+// value={result.Symbol} onClick={component.getStockHistory}
+
 export function SearchResultsTemplate(component) {
     const searchResults = component.state.searchResults.map((result, index) => {
         return (
-            <tr key={index}>
+            <tr key={index} onClick={() => component.getStockHistory(result.Symbol)}>
                 {/*TODO: Cleanup the styles*/}
-                <td style={{ verticalAlign: 'middle' }}>
-                    <Button className="btn-s" type="button" value={result.Symbol} onClick={component.getStockHistory}>
-                        {result.Symbol}
-                    </Button>
-                </td>
+                <td style={{ verticalAlign: 'middle' }}> {result.Symbol}</td>
                 <td style={{ verticalAlign: 'middle' }}>{result.Name}</td>
                 <td style={{ verticalAlign: 'middle' }}>{result.Sector}</td>
                 <td style={{ verticalAlign: 'middle' }}>{result.industry}</td>
@@ -29,9 +27,9 @@ export function SearchResultsTemplate(component) {
             {
                 component.state.searchResults.length > 0 &&
                 <div>
+                    <h4 style={{ marginBottom: '20px' }}>Select a row to view historical data</h4>
                     <Table striped bordered responsive hover>
                         <thead>
-
                             <tr>
                                 {/*TODO: Cleanup the styles*/}
                                 <th style={{ textAlign: 'center' }}>Company Symbol</th>

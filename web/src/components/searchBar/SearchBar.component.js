@@ -6,10 +6,20 @@ export default class SearchBarComponent extends Component {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleSearchTextChange = this.handleSearchTextChange.bind(this);
+        this.state = {
+            searchText: '',
+            showError: false
+        };
     }
 
     handleSearch() {
-        this.props.getCompanies(this.state.searchText);
+        if (this.state.searchText.length > 0) {
+            this.props.getCompanies(this.state.searchText);
+        } else {
+            this.setState({
+                showError: true
+            })
+        }
     }
 
     handleSearchTextChange(event) {
@@ -19,7 +29,8 @@ export default class SearchBarComponent extends Component {
             this.handleSearch(event.target.value);
         } else {
             this.setState({
-                searchText: event.target.value
+                searchText: event.target.value,
+                showError: false
             })
         }
     }

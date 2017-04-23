@@ -12,6 +12,12 @@ export function SearchBarTemplate(component) {
                     </button>
                 </div>
             </div>
+            {
+                component.state.showError &&
+                <div className="alert alert-danger">
+                    Please enter in some text
+                </div>
+            }
         </div>
     );
 }

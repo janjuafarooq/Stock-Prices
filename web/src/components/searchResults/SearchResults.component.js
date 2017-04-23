@@ -23,7 +23,6 @@ export default class SearchResultsComponent extends Component {
                 searchResults: res.data,
                 currentPage: nextPage
             }), () => {
-                console.log(this.state);
                 this.formatResultsText();
             });
         });
@@ -46,7 +45,6 @@ export default class SearchResultsComponent extends Component {
                     pages: res.pages,
                     currentPage: 1
                 }), () => {
-                    console.log(this.state);
                     this.formatResultsText();
                 });
             });
@@ -66,8 +64,8 @@ export default class SearchResultsComponent extends Component {
         });
     }
 
-    getStockHistory(e) {
-        this.props.getStockData(e.target.value);
+    getStockHistory(symbol) {
+        this.props.getStockData(symbol);
     }
 
     render() {
