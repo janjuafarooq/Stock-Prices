@@ -9,7 +9,9 @@ export default class App extends Component {
     super(props);
     this.state = {
       searchText: '',
-      symbol: ''
+      symbol: '',
+      // TODO: Add a settings file for page size
+      pageSize: 10
     };
   }
 
@@ -25,7 +27,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <SearchBar getCompanies={this.getCompanies.bind(this)} />
-        <SearchResults searchText={this.state.searchText} getStockData={this.getStockData.bind(this)} />
+        <SearchResults pageSize={this.state.pageSize} searchText={this.state.searchText} getStockData={this.getStockData.bind(this)} />
         <Graph symbol={this.state.symbol} />
       </div>
     );

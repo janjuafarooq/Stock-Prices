@@ -28,21 +28,35 @@ export function SearchResultsTemplate(component) {
             }
             {
                 component.state.searchResults.length > 0 &&
-                <Table striped bordered responsive hover>
-                    <thead>
+                <div>
+                    <Table striped bordered responsive hover>
+                        <thead>
 
-                        <tr>
-                            {/*TODO: Cleanup the styles*/}
-                            <th style={{ textAlign: 'center' }}>Company Symbol</th>
-                            <th style={{ textAlign: 'center' }}>Company Name</th>
-                            <th style={{ textAlign: 'center' }}>Sector</th>
-                            <th style={{ textAlign: 'center' }}>Industry</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {searchResults}
-                    </tbody>
-                </Table>
+                            <tr>
+                                {/*TODO: Cleanup the styles*/}
+                                <th style={{ textAlign: 'center' }}>Company Symbol</th>
+                                <th style={{ textAlign: 'center' }}>Company Name</th>
+                                <th style={{ textAlign: 'center' }}>Sector</th>
+                                <th style={{ textAlign: 'center' }}>Industry</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {searchResults}
+                        </tbody>
+                    </Table>
+                    <span>
+                        {/*TODO: Cleanup the styles*/}
+                        {
+                            component.state.currentPage > 1 &&
+                            <Button style={{ margin: '0px 10px' }} value={-1} onClick={component.updatePage} className="btn">Previous</Button>
+                        }
+                        {component.state.resultsText}
+                        {
+                            component.state.currentPage < component.state.pages &&
+                            <Button style={{ margin: '0px 10px' }} value={1} onClick={component.updatePage} className="btn">Next</Button>
+                        }
+                    </span>
+                </div>
             }
 
         </div>

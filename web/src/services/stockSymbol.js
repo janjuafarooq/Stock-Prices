@@ -1,7 +1,7 @@
-export function getStockSymbol(symbol) {
+export function getStockSymbol(symbol, page, pageSize) {
     return new Promise(
         (resolve, reject) => {
-            const url = 'http://localhost:3001/symbolsearch/' + symbol;
+            const url = 'http://localhost:3001/symbolsearch/' + symbol + '?page=' + page + '&pageSize=' + pageSize;
             const options = {
                 method: 'GET',
                 headers: {
