@@ -13,6 +13,7 @@ module.exports = (symbol, page, pageSize) => {
                         { Symbol: { '$regex': symbol, '$options': 'i' } }
                     ]
                 })
+                .sort({ Name: 1 })
                 .paginate(page, pageSize, function (err, data, total) {
                     resolve({
                         data: data,
