@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
         })
         .catch(error => {
             console.log(error);
-            res.status(500).json({ "message": "No info was found." });
+            res.status(500).json({ "message": "No info was found.", error: error });
         });
 });
 

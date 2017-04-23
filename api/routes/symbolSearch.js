@@ -9,8 +9,7 @@ router.get('/:name', function (req, res, next) {
         })
         .catch(error => {
             console.log(error);
-            // TODO: Explain what went wrong in 400's 500 is just for exceptions on server side
-            res.status(500).json({ "message": "No info was found." });
+            res.status(500).json({ "message": "No info was found.", error: error });
         });
 });
 

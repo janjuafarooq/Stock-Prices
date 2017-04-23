@@ -1,8 +1,6 @@
 import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 
-// value={result.Symbol} onClick={component.getStockHistory}
-
 export function SearchResultsTemplate(component) {
     const searchResults = component.state.searchResults.map((result, index) => {
         return (
