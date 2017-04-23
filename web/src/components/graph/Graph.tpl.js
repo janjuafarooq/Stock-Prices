@@ -17,13 +17,13 @@ export function GraphTemplate(component) {
     ];
 
     return (
-        <div className="row">
+        <div>
             {component.state.historicalData.length > 0 &&
                 <CandlestickChart
                     data={data}
-                    width={1000}
-                    height={500}
-                    xAxisTickInterval={{ unit: 'month', interval: 1 }}
+                    width={800}
+                    height={300}
+                    xAxisTickInterval={{ unit: 'week', interval: 1 }}
                     yAxisOffset={-10}
                     fillUp={(value) => '#32CD32'}
                     fillDown={(value) => '#DC143C'}
