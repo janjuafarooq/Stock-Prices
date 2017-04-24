@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from './Main.component.js';
+import expect from 'expect';
+import { renderIntoDocument } from 'react-addons-test-utils';
 
-it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Main />, div);
+describe('/components/main/Main.component.js', () => {
+    let main;
+    beforeEach(() => {
+        main = renderIntoDocument(
+            <Main />
+        );
+    });
+
+    it('renders without crashing', () => {
+        expect(main).toExist();
+    });
 });
