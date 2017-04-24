@@ -4,7 +4,7 @@ import { Table, Button } from 'react-bootstrap';
 export function SearchResultsTemplate(component) {
     const searchResults = component.state.searchResults.map((result, index) => {
         return (
-            <tr key={index} onClick={() => component.getStockHistory(result.Symbol)}>
+            <tr key={index} onClick={() => component.getStockHistory(result.Symbol)} style={{ cursor: 'pointer' }}>
                 {/*TODO: Cleanup the styles*/}
                 <td style={{ verticalAlign: 'middle' }}> {result.Symbol}</td>
                 <td style={{ verticalAlign: 'middle' }}>{result.Name}</td>
