@@ -5,6 +5,7 @@ module.exports = () => {
         (resolve, reject) => {
             Company
                 .find({})
+                .sort({ Name: 1 })
                 .then(data => {
                     data = data.map((item) => {
                         return {

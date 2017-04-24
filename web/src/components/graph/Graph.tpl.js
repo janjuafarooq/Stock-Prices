@@ -23,6 +23,7 @@ export function GraphTemplate(component) {
                     data={data}
                     width={800}
                     height={300}
+                    hoverAnimation={false}
                     xAxisTickInterval={{ unit: 'week', interval: 1 }}
                     yAxisOffset={-10}
                     fillUp={(value) => '#32CD32'}
