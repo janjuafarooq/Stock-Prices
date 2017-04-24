@@ -29,13 +29,8 @@ export default class SearchResultsComponent extends Component {
     }
 
     componentWillReceiveProps(props) {
-        if (props.searchText.length === 0) {
-            this.setState({
-                searchText: '',
-                searchResults: []
-            });
-        } else if (props.searchText !== this.state.searchText) {
-            // Only want to fetch when the search text changes, not when other properties change
+        if (props.searchText !== this.state.searchText) {
+            // Only want to fetch when the search text changes
             getcompanyList(props.searchText).then((res) => {
                 this.setState(() => ({
                     searchText: props.searchText,

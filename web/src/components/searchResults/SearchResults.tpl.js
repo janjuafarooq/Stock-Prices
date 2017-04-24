@@ -44,12 +44,12 @@ export function SearchResultsTemplate(component) {
                         {/*TODO: Cleanup the styles*/}
                         {
                             component.state.currentPage > 1 &&
-                            <Button style={{ margin: '0px 10px' }} value={-1} onClick={component.updatePage} className="btn">Previous</Button>
+                            <Button style={{ margin: '0px 10px' }} value={-1} onClick={component.updatePage} className="btn">Previous Page</Button>
                         }
                         {component.state.resultsText}
                         {
                             component.state.currentPage < component.state.pages &&
-                            <Button style={{ margin: '0px 10px' }} value={1} onClick={component.updatePage} className="btn">Next</Button>
+                            <Button style={{ margin: '0px 10px' }} value={1} onClick={component.updatePage} className="btn">Next Page</Button>
                         }
                     </span>
                 </div>

@@ -10,7 +10,7 @@ export default class SearchBarComponent extends Component {
         this.state = {
             searchText: '',
             showError: false,
-            autocomplete: true
+            autocomplete: false
         };
     }
 

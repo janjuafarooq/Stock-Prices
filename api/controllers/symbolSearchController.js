@@ -1,7 +1,7 @@
 const Company = require('../models/companyModel.js');
 const paginate = require('mongoose-pagination');
 module.exports = (symbol, page, pageSize) => {
-    // Defaulting pagesize to 10 if none is passed and page to 1
+    // Defaulting pagesize to 10 and page to 1 if they are not passed
     pageSize = pageSize ? pageSize : 10;
     page = page ? page : 1;
     return new Promise(

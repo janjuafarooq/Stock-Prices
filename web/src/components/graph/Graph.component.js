@@ -7,14 +7,13 @@ export default class GraphComponent extends Component {
         super(props);
 
         this.state = {
-            symbol: props.symbol,
             historicalData: []
         };
     }
 
     componentWillReceiveProps(props) {
-        // Only want to fetch when a new symbol is selected, not when other properties change
-        if (props.symbol && props.symbol !== this.state.symbol) {
+        // Only want to fetch when a new symbol is selected
+        if (props.symbol !== this.state.symbol) {
             getStockHistory(props.symbol).then((res) => {
                 this.setState({
                     symbol: props.symbol,
