@@ -1,15 +1,16 @@
 import React from 'react';
 import { Table, Button } from 'react-bootstrap';
+import styles from './SearchResults.style.js';
 
 export function SearchResultsTemplate(component) {
     const searchResults = component.state.searchResults.map((result, index) => {
         return (
             <tr key={index} onClick={() => component.getStockHistory(result.Symbol)} style={{ cursor: 'pointer' }}>
                 {/*TODO: Cleanup the styles*/}
-                <td style={{ verticalAlign: 'middle' }}> {result.Symbol}</td>
-                <td style={{ verticalAlign: 'middle' }}>{result.Name}</td>
-                <td style={{ verticalAlign: 'middle' }}>{result.Sector}</td>
-                <td style={{ verticalAlign: 'middle' }}>{result.industry}</td>
+                <td style={styles.stockRow}> {result.Symbol}</td>
+                <td style={styles.stockRow}>{result.Name}</td>
+                <td style={styles.stockRow}>{result.Sector}</td>
+                <td style={styles.stockRow}>{result.industry}</td>
             </tr>
         );
     });
@@ -25,15 +26,14 @@ export function SearchResultsTemplate(component) {
             {
                 component.state.searchResults.length > 0 &&
                 <div>
-                    <h4 style={{ marginBottom: '20px' }}>Select a row to view historical data</h4>
-                    <Table striped bordered responsive hover>
+                    <h4 style={styles.instructions}>Select a row to view historical data</h4>
+                    <Table bordered hover style={styles.table}>
                         <thead>
                             <tr>
-                                {/*TODO: Cleanup the styles*/}
-                                <th style={{ textAlign: 'center' }}>Company Symbol</th>
-                                <th style={{ textAlign: 'center' }}>Company Name</th>
-                                <th style={{ textAlign: 'center' }}>Sector</th>
-                                <th style={{ textAlign: 'center' }}>Industry</th>
+                                <th style={styles.headerRow}>Company Symbol</th>
+                                <th style={styles.headerRow}>Company Name</th>
+                                <th style={styles.headerRow}>Sector</th>
+                                <th style={styles.headerRow}>Industry</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,20 +41,18 @@ export function SearchResultsTemplate(component) {
                         </tbody>
                     </Table>
                     <span>
-                        {/*TODO: Cleanup the styles*/}
                         {
                             component.state.currentPage > 1 &&
-                            <Button style={{ margin: '0px 10px' }} value={-1} onClick={component.updatePage} className="btn">Previous Page</Button>
+                            <Button style={styles.pageButtons} value={-1} onClick={component.updatePage} className="btn">Previous Page</Button>
                         }
                         {component.state.resultsText}
                         {
                             component.state.currentPage < component.state.pages &&
-                            <Button style={{ margin: '0px 10px' }} value={1} onClick={component.updatePage} className="btn">Next Page</Button>
+                            <Button style={styles.pageButtons} value={1} onClick={component.updatePage} className="btn">Next Page</Button>
                         }
                     </span>
                 </div>
             }
-
         </div>
     );
 }

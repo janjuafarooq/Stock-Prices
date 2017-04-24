@@ -30,6 +30,7 @@ export function GraphTemplate(component) {
                     title={"Historical data for " + component.state.symbol}
                 />
             }
+            <div ref={(element) => { component.bottomOfGraph = element; }}></div>
         </div>
     );
 }
