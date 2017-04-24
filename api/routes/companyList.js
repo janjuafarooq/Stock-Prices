@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const companyListController = require('../controllers/companyListController.js');
+const companyListController = require('../models/companyListModel.js');
 
 router.get('/', function (req, res, next) {
     companyListController()

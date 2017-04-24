@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { MainTemplate } from './Main.tpl.js';
-
+import config from '../../config.js'
 export default class Main extends Component {
   constructor(props) {
     super(props);
@@ -9,8 +9,7 @@ export default class Main extends Component {
     this.state = {
       searchText: null,
       symbol: null,
-      // TODO: Add a settings file for page size
-      pageSize: 10
+      pageSize: config.pageSize
     };
   }
 

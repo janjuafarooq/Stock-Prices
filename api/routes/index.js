@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.use('/stockhistory', require('./stockHistory'));
-router.use('/symbolsearch', require('./symbolSearch'));
+router.use('/companyData', require('./companyData'));
 router.use('/companylist', require('./companyList'));
 
 router.get('/', function (req, res, next) {

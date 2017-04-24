@@ -1,7 +1,7 @@
-export function getcompanyList(symbol, page, pageSize) {
+export function getCompanyData(symbol, page, pageSize) {
     return new Promise(
         (resolve, reject) => {
-            const url = '/symbolsearch/' + symbol + '?page=' + page + '&pageSize=' + pageSize;
+            const url = '/companyData/' + symbol + '?page=' + page + '&pageSize=' + pageSize;
             const options = {
                 method: 'GET',
                 headers: {

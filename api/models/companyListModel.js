@@ -1,4 +1,4 @@
-const Company = require('../models/companyModel.js');
+const Company = require('../schemas/companySchema.js');
 
 module.exports = () => {
     return new Promise(

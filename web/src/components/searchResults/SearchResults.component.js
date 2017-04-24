@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { SearchResultsTemplate } from './SearchResults.tpl.js';
-import { getcompanyList } from '../../services/companyList.js';
+import { getCompanyData } from '../../services/companyDataService.js';
 
 export default class SearchResultsComponent extends Component {
     constructor(props) {
@@ -18,7 +18,7 @@ export default class SearchResultsComponent extends Component {
 
     updatePage(e) {
         const nextPage = this.state.currentPage + parseInt(e.target.value, 10);
-        getcompanyList(this.state.searchText, nextPage, this.pageSize).then((res) => {
+        getCompanyData(this.state.searchText, nextPage, this.pageSize).then((res) => {
             this.setState(() => ({
                 searchResults: res.data,
                 currentPage: nextPage
@@ -31,7 +31,7 @@ export default class SearchResultsComponent extends Component {
     componentWillReceiveProps(props) {
         if (props.searchText !== this.state.searchText) {
             // Only want to fetch when the search text changes
-            getcompanyList(props.searchText).then((res) => {
+            getCompanyData(props.searchText, 1, this.pageSize).then((res) => {
                 this.setState(() => ({
                     searchText: props.searchText,
                     searchResults: res.data,

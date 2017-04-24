@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { GraphTemplate } from './Graph.tpl.js';
-import { getStockHistory } from '../../services/stockHistory.js';
+import { getStockHistory } from '../../services/stockHistoryService.js';
 import ReactDOM from 'react-dom';
 
 export default class GraphComponent extends Component {
