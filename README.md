@@ -1,7 +1,7 @@
 # Stock-Prices
 
 ## Installation
-
+Note: These instructions were written for a machine running OS X. Some steps may need to be modified for your operating system.
 ### Node
 1. Install node from https://nodejs.org/en/
 
