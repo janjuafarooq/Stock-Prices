@@ -13,7 +13,11 @@
 4. Run importcsv.sh from your terminal with the command `./importcsv.sh` to add the csv files to the database (you may have to run `chmod +x importcsv.sh` to get it to work).
 
 *Optional:
-I prefer to keep mongodb installed at database/mongo and a separate folder for the data in database/mongo-data.  Then I simply run `./mongodb/bin/mongod --dbpath ./mongo-data` from the database folder and all table information is routed into the mongo-data folder. Robomongo is a nice GUI for viewing the information https://robomongo.org/ 
+I prefer to keep mongodb installed at database/mongo and a separate folder for the data in database/mongo-data.  Then I simply run `./mongodb/bin/mongod --dbpath ./mongo-data` from the database folder and all table information is routed into the mongo-data folder. Robomongo is a nice GUI for viewing the information https://robomongo.org/
+
+Here is what that looks like:
+
+![Alt text](http://imgur.com/6eXV7wE.png)
 
 ### Backend Server
 
