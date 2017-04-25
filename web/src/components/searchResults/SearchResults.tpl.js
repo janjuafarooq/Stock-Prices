@@ -42,12 +42,12 @@ export function SearchResultsTemplate(component) {
                     <span>
                         {
                             component.state.currentPage > 1 &&
-                            <Button style={styles.pageButtons} value={-1} onClick={component.updatePage} className="btn">Previous Page</Button>
+                            <Button style={styles.pageButtons} value={-1} onClick={component.updatePage} className="btn" name={"previous-page"}>Previous Page</Button>
                         }
                         {component.state.resultsText}
                         {
                             component.state.currentPage < component.state.pages &&
-                            <Button style={styles.pageButtons} value={1} onClick={component.updatePage} className="btn">Next Page</Button>
+                            <Button style={styles.pageButtons} value={1} onClick={component.updatePage} className="btn" name={"next-page"}>Next Page</Button>
                         }
                     </span>
                 </div>

@@ -7,6 +7,8 @@ import sinon from 'sinon';
 
 describe('/components/searchResults/SearchResults.component.js', () => {
     const receivePropsSpy = sinon.spy(SearchResults.prototype, 'componentWillReceiveProps');
+    const updatePageSpy = sinon.spy();
+
     let searchResults;
     const props = {
         pageSize: 10,
@@ -15,6 +17,7 @@ describe('/components/searchResults/SearchResults.component.js', () => {
 
     beforeEach(() => {
         searchResults = mount(<SearchResults {...props} />);
+        searchResults.instance().updatePage = updatePageSpy;
     });
 
     it('it should render without crashing', () => {
@@ -30,14 +33,20 @@ describe('/components/searchResults/SearchResults.component.js', () => {
         expect(receivePropsSpy.calledOnce).toBe(true);
     });
 
-    it('it should increment page', () => {
-        const e = {
-            target: {
-                value: 1
-            }
-        };
-        fetchMock.mock({ matcher: '/companyData/apple?page=2&pageSize=10', response: { "data": [{}], "pages": null, "count": null } });
-        searchResults.instance().updatePage(e);
-        expect(fetchMock.called('/companyData/apple?page=2&pageSize=10')).toBe(true);
+    it('it should change pages', () => {
+        searchResults
+        searchResults.setState({
+            currentPage: 2,
+            pages: 3,
+            searchResults: new Array(1)
+        }, () => {
+            const previousButton = searchResults.find('[name="previous-page"]');
+            const nextButton = searchResults.find('[name="next-page"]');
+            expect(previousButton).toExist();
+            expect(nextButton).toExist();
+            previousButton.simulate('click');
+            nextButton.simulate('click');
+            expect(updatePageSpy.calledTwice).toBe(true);
+        });
     });
 });
