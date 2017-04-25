@@ -7,7 +7,7 @@ export default class SearchResultsComponent extends Component {
         super(props);
         this.pageSize = props.pageSize;
         this.resultsText = '';
-        this.getStockHistory = this.getStockHistory.bind(this);
+        this.updateSymbol = this.updateSymbol.bind(this);
         this.updatePage = this.updatePage.bind(this);
 
         this.state = {
@@ -68,8 +68,8 @@ export default class SearchResultsComponent extends Component {
         });
     }
 
-    getStockHistory(symbol) {
-        this.props.getStockData(symbol);
+    updateSymbol(symbol) {
+        this.props.updateSymbol(symbol);
     }
 
     render() {

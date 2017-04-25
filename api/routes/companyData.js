@@ -9,12 +9,16 @@ router.get('/:name', function (req, res, next) {
                 res.status(200).json(response);
             } else {
                 // No data
-                res.status(404).json({ message: 'No results found' });
+                res.status(404).json({
+                    message: 'No results found'
+                });
             }
         })
         .catch(error => {
             console.log(error);
-            res.status(500).json({ "message": "No info was found.", error: error });
+            res.status(500).json({
+                error: error
+            });
         });
 });
 

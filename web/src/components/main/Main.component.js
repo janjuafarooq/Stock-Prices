@@ -5,8 +5,8 @@ import config from '../../config.js'
 export default class Main extends Component {
   constructor(props) {
     super(props);
-    this.getCompanies = this.getCompanies.bind(this);
-    this.getStockData = this.getStockData.bind(this);
+    this.updateSearchText = this.updateSearchText.bind(this);
+    this.updateSymbol = this.updateSymbol.bind(this);
     this.state = {
       searchText: null,
       symbol: null,
@@ -14,12 +14,12 @@ export default class Main extends Component {
     };
   }
 
-  getCompanies(text) {
+  updateSearchText(text) {
     this.setState({ searchText: text });
   }
 
-  getStockData(symbolToSearch) {
-    this.setState({ symbol: symbolToSearch });
+  updateSymbol(symbol) {
+    this.setState({ symbol: symbol });
   }
 
   render() {

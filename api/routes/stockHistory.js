@@ -9,11 +9,15 @@ router.get('/:symbol', function (req, res, next) {
                 res.status(200).json(response);
             } else {
                 // Bad request
-                res.status(400).send('Symbol does not exist');
+                res.status(400).json({
+                    message: 'Symbol does not exist'
+                });
             }
         })
         .catch(error => {
-            res.status(500).json({ error: error });
+            res.status(500).json({
+                error: error
+            });
         });
 });
 

@@ -9,7 +9,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
     let searchBar;
     const spy = sinon.spy();
     const props = {
-        getCompanies: spy
+        updateSearchText: spy
     };
 
     beforeEach(() => {

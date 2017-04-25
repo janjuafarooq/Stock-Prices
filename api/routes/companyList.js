@@ -9,11 +9,15 @@ router.get('/', function (req, res, next) {
                 res.status(200).json(response);
             } else {
                 // No data
-                res.status(404).json({ message: 'No results found' });
+                res.status(404).json({
+                    message: 'No results found'
+                });
             }
         })
         .catch(error => {
-            res.status(500).json({ error: error });
+            res.status(500).json({
+                error: error
+            });
         });
 });
 

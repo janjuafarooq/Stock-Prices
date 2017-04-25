@@ -5,7 +5,7 @@ import styles from './SearchResults.style.js';
 export function SearchResultsTemplate(component) {
     const searchResults = component.state.searchResults.map((result, index) => {
         return (
-            <tr key={index} onClick={() => component.getStockHistory(result.Symbol)} style={{ cursor: 'pointer' }}>
+            <tr key={index} onClick={() => component.updateSymbol(result.Symbol)} style={{ cursor: 'pointer' }}>
                 <td style={styles.stockRow}> {result.Symbol}</td>
                 <td style={styles.stockRow}>{result.Name}</td>
                 <td style={styles.stockRow}>{result.Sector}</td>

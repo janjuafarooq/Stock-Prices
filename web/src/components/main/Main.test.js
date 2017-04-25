@@ -17,12 +17,12 @@ describe('/components/main/Main.component.js', () => {
     });
 
     it('it should update companies to search', () => {
-        main.getCompanies('apple');
+        main.updateSearchText('apple');
         expect(main.state.searchText).toEqual('apple');
     });
 
     it('it should update stock symbol to search', () => {
-        main.getStockData('aapl');
+        main.updateSymbol('aapl');
         expect(main.state.symbol).toEqual('aapl');
     });
 });

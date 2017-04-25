@@ -6,13 +6,13 @@ import styles from './Main.style.js'
 
 export function MainTemplate(component) {
     const searchBarProps = {
-        getCompanies: component.getCompanies
+        updateSearchText: component.updateSearchText
     };
 
     const searchResultsProps = {
         pageSize: component.state.pageSize,
         searchText: component.state.searchText,
-        getStockData: component.getStockData
+        updateSymbol: component.updateSymbol
     };
 
     const graphProps = {
