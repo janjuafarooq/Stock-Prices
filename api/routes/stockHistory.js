@@ -8,7 +8,8 @@ router.get('/:symbol', function (req, res, next) {
             if (response.length > 0) {
                 res.status(200).json(response);
             } else {
-                res.status(400).json({ message: 'Symbol does not exist' });
+                // Bad request
+                res.status(400).send('Symbol does not exist');
             }
         })
         .catch(error => {

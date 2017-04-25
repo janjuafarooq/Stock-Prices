@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
             if (response.length > 0) {
                 res.status(200).json(response);
             } else {
+                // No data
                 res.status(404).json({ message: 'No results found' });
             }
         })

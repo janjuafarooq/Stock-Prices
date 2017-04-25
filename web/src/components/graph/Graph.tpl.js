@@ -1,5 +1,6 @@
 import React from 'react';
 import { CandlestickChart } from 'react-d3';
+import styles from './Graph.style.js'
 
 export function GraphTemplate(component) {
     const data = [
@@ -18,6 +19,9 @@ export function GraphTemplate(component) {
 
     return (
         <div>
+            {component.state.error &&
+                <h3 style={styles.error}>Could not get stock history for {component.props.symbol}</h3>
+            }
             {component.state.historicalData.length > 0 &&
                 <CandlestickChart
                     data={data}

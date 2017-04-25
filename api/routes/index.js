@@ -6,7 +6,7 @@ router.use('/companyData', require('./companyData'));
 router.use('/companylist', require('./companyList'));
 
 router.get('/', function (req, res, next) {
-    res.status(403).json({'message': 'Not allowed'});
+    res.status(403).send('Not allowed');
 });
 
 module.exports = router;

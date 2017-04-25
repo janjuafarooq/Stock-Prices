@@ -19,31 +19,39 @@ export default class SearchResultsComponent extends Component {
 
     updatePage(e) {
         const nextPage = this.state.currentPage + parseInt(e.target.value, 10);
-        getCompanyData(this.state.searchText, nextPage, this.pageSize).then((res) => {
-            this.setState(() => ({
-                searchResults: res.data,
-                currentPage: nextPage
-            }), () => {
-                this.formatResultsText();
-            });
-        });
+        getCompanyData(this.state.searchText, nextPage, this.pageSize)
+            .then((res) => {
+                this.setState(() => ({
+                    searchResults: res.data,
+                    currentPage: nextPage
+                }), () => {
+                    this.formatResultsText();
+                });
+            })
     }
 
     componentWillReceiveProps(props) {
         if (props.searchText !== this.state.searchText) {
             // Only want to fetch when the search text changes
-            getCompanyData(props.searchText, 1, this.pageSize).then((res) => {
-                this.setState(() => ({
-                    searchText: props.searchText,
-                    searchResults: res.data,
-                    noResults: res.data.length === 0,
-                    totalCount: res.count,
-                    pages: res.pages,
-                    currentPage: 1
-                }), () => {
-                    this.formatResultsText();
+            getCompanyData(props.searchText, 1, this.pageSize)
+                .then((res) => {
+                    this.setState(() => ({
+                        searchText: props.searchText,
+                        searchResults: res.data,
+                        noResults: false,
+                        totalCount: res.count,
+                        pages: res.pages,
+                        currentPage: 1
+                    }), () => {
+                        this.formatResultsText();
+                    });
+                })
+                .catch((error) => {
+                    this.setState({
+                        noResults: true,
+                        searchResults: []
+                    });
                 });
-            });
         }
     }
 

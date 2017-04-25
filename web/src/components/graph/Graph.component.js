@@ -16,15 +16,26 @@ export default class GraphComponent extends Component {
     componentWillReceiveProps(props) {
         // Only want to fetch when a new symbol is selected
         if (props.symbol && props.symbol !== this.state.symbol) {
-            getStockHistory(props.symbol).then((res) => {
-                this.setState(() => ({
-                    symbol: props.symbol,
-                    historicalData: res
-                }), () => {
-                    const node = ReactDOM.findDOMNode(this.bottomOfGraph);
-                    node.scrollIntoView({ behavior: "smooth" });
+            getStockHistory(props.symbol)
+                .then((res) => {
+                    this.setState(() => ({
+                        symbol: props.symbol,
+                        historicalData: res,
+                        error: false
+                    }), () => {
+                        const node = ReactDOM.findDOMNode(this.bottomOfGraph);
+                        node.scrollIntoView({ behavior: "smooth" });
+                    });
+                })
+                .catch((error) => {
+                    this.setState(() => ({
+                        error: true,
+                        historicalData: []
+                    }), () => {
+                        const node = ReactDOM.findDOMNode(this.bottomOfGraph);
+                        node.scrollIntoView({ behavior: "smooth" });
+                    });
                 });
-            });
         }
     }
 
