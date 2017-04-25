@@ -23,11 +23,13 @@ Here is what that structure looks like:
 
 1. Change directory to the api directory and install node modules by running `cd api && npm install`
 2. Start the backend server by running  `npm start` in the api directory. Leave this terminal window running.
+3. Tests can be run with the `npm test` command
 
 ### Frontend Server
 
 1. Change directory to the web folder and install node modules by running `cd web && npm install`
 2. Start the frontend server by running  `npm start` in the web directory. Leave this terminal window running.
+3. Tests can be run with the `npm test` command
 
 ### Note
 
