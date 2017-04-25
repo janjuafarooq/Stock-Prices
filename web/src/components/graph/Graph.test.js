@@ -16,8 +16,8 @@ describe('/components/graph/Graph.component.js', () => {
         );
     });
 
-    it('renders without crashing', () => {
+    it('it should render without crashing', () => {
         expect(graph).toExist();
-
+        expect(graph.state.symbol).toEqual('aapl');
     });
 });

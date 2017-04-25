@@ -27,7 +27,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         expect(searchBar.state.autocomplete).toEqual(false);
     });
 
-    it('should add text to searchbar and does not auto search by default', () => {
+    it('it should add text to searchbar and should not auto search by default', () => {
         const e = {
             target: {
                 value: 'aapl'
