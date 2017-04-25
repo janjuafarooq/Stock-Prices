@@ -22,13 +22,13 @@ Here is what that structure looks like:
 ### Backend Server
 
 1. Change directory to the api directory and install node modules by running `cd api && npm install`
-2. Start the backend server by running  `npm start` in the api directory. Leave this terminal window running.
+2. Start the backend server by running  `npm start` in the api directory. Leave this terminal window running. The backend server runs on localhost:3001 by default
 3. Tests can be run with the `npm test` command
 
 ### Frontend Server
 
 1. Change directory to the web folder and install node modules by running `cd web && npm install`
-2. Start the frontend server by running  `npm start` in the web directory. Leave this terminal window running.
+2. Start the frontend server by running  `npm start` in the web directory. Leave this terminal window running. The front end runs on localhost:3000 by default and requests are proxied in the package.json
 3. Tests can be run with the `npm test` command
 
 ### Note
