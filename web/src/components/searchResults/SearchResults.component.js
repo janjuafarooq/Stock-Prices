@@ -12,7 +12,8 @@ export default class SearchResultsComponent extends Component {
 
         this.state = {
             searchResults: [],
-            currentPage: 1
+            currentPage: 1,
+            searchText: props.searchText
         };
     }
 
