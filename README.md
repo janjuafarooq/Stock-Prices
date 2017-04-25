@@ -24,3 +24,11 @@ I prefer to keep mongodb installed at database/mongo and a separate folder for t
 
 1. Change directory to the web folder and install node modules by running `cd web && npm install`
 2. Start the frontend server by running  `npm start` in the web directory. Leave this terminal window running.
+
+### Note
+
+Currently there are some console warnings due to a recent update in react that require developers to update their node modules.  The warnings are due to react-bootstrap and react-d3 and will be resolved when they update accordingly:
+
+Warning: Accessing PropTypes via the main React package is deprecated. Use the prop-types package from npm instead.
+Warning: Portal: React.createClass is deprecated and will be removed in version 16. Use plain JavaScript classes instead. If you're not yet ready to migrate, create-react-class is available on npm as a drop-in replacement.
+Warning: React.__spread is deprecated and should not be used. Use Object.assign directly or another helper function with similar semantics. You may be seeing this warning due to your compiler. See https://fb.me/react-spread-deprecation for more details.
