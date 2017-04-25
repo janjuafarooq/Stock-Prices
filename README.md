@@ -15,9 +15,9 @@
 *Optional:
 I prefer to keep mongodb installed at database/mongo and a separate folder for the data in database/mongo-data.  Then I simply run `./mongodb/bin/mongod --dbpath ./mongo-data` from the database folder and all table information is routed into the mongo-data folder. Robomongo is a nice GUI for viewing the information https://robomongo.org/
 
-Here is what that looks like:
+Here is what that structure looks like:
 
-![Alt text](http://imgur.com/6eXV7wE.png)
+![Alt text](http://i.imgur.com/lTUQjUk.png)
 
 ### Backend Server
 
