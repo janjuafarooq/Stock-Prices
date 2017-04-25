@@ -2,14 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from './Main.component.js';
 import expect from 'expect';
-import { renderIntoDocument } from 'react-addons-test-utils';
+import { mount } from 'enzyme';
 
 describe('/components/main/Main.component.js', () => {
     let main;
     beforeEach(() => {
-        main = renderIntoDocument(
-            <Main />
-        );
+        main = mount(<Main />);
     });
 
     it('it should render without crashing', () => {
@@ -17,12 +15,12 @@ describe('/components/main/Main.component.js', () => {
     });
 
     it('it should update companies to search', () => {
-        main.updateSearchText('apple');
-        expect(main.state.searchText).toEqual('apple');
+        main.instance().updateSearchText('apple');
+        expect(main.state().searchText).toEqual('apple');
     });
 
     it('it should update stock symbol to search', () => {
-        main.updateSymbol('aapl');
-        expect(main.state.symbol).toEqual('aapl');
+        main.instance().updateSymbol('aapl');
+        expect(main.state().symbol).toEqual('aapl');
     });
 });
