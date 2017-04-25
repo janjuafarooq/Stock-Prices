@@ -5,5 +5,6 @@ npm-debug.log
 logs
 *.log
 npm-debug.log*
-mongo-data
-mongo
+database/mongo-data
+database/mongodb
+database/*.csv
