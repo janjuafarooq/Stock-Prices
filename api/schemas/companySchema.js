@@ -7,7 +7,7 @@ const CompanySchema = db.Schema(
 		Sector: String,
 		industry: String,
 	},
-	{ collection: 'Company' }
+	{ collection: 'companies' }
 );
 
 const Company = db.model('Company', CompanySchema);
