@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import SearchBar from './SearchBar.component.js';
 import expect from 'expect';
 import { renderIntoDocument } from 'react-addons-test-utils';
-import fetchMock from 'fetch-mock';
 import sinon from 'sinon';
 
 describe('/components/SearchBar/SearchBar.component.js', () => {
