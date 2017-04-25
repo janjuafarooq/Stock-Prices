@@ -18,11 +18,12 @@ describe('/components/searchResults/SearchResults.component.js', () => {
         );
     });
 
-    it('renders without crashing', () => {
+    it('it should render without crashing', () => {
         expect(searchResults).toExist();
+        expect(searchResults.state.currentPage).toBe(1);        
     });
 
-    it('increments page', () => {
+    it('it should increment page', () => {
         const e = {
             target: {
                 value: 1
@@ -36,4 +37,4 @@ describe('/components/searchResults/SearchResults.component.js', () => {
         searchResults.updatePage(e);
         expect(fetchMock.called('/companyData/apple?page=2&pageSize=10')).toBe(true);
     });
-})
+});

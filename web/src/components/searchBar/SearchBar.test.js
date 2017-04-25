@@ -19,15 +19,15 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         );
     });
 
-    it('renders without crashing', () => {
+    it('it should render without crashing', () => {
         expect(SearchBar).toExist();
     });
 
-    it('has autocomplete disabled by default', () => {
+    it('it should have autocomplete disabled by default', () => {
         expect(searchBar.state.autocomplete).toEqual(false);
     });
 
-    it('adds text to searchbar and does not auto complete by default', () => {
+    it('should add text to searchbar and does not auto search by default', () => {
         const e = {
             target: {
                 value: 'aapl'
@@ -38,7 +38,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         expect(spy.called).toBe(false);
     });
 
-    it('searches', () => {
+    it('it should search', () => {
         const e = {
             target: {
                 value: 'aapl'
@@ -49,7 +49,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         expect(spy.called).toBe(true);
     })
 
-    it('auto complete enables and calls search', () => {
+    it('it should have auto complete enabled and call search', () => {
         const e1 = {
             target: {
                 checked: true
@@ -67,5 +67,4 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         expect(searchBar.state.searchText).toEqual('aapl');
         expect(spy.called).toBe(true);
     });
-
 })

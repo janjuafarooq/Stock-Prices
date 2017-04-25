@@ -14,6 +14,9 @@ module.exports = () => {
                         }
                     });
                     resolve(data);
+                })
+                .catch(error => {
+                    reject(error);
                 });
         }
     );

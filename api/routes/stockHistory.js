@@ -5,13 +5,15 @@ const stockHistoryModel = require('../models/stockHistoryModel.js');
 router.get('/:symbol', function (req, res, next) {
     stockHistoryModel(req.params.symbol)
         .then(response => {
-            res.send(response);
+            if (response.length > 0) {
+                res.status(200).json(response);
+            } else {
+                res.status(400).json({ message: 'Symbol does not exist' });
+            }
         })
         .catch(error => {
-            console.log(error);
-            res.status(500).json({ "message": "No info was found.", error: error });
+            res.status(500).json({ error: error });
         });
-
 });
 
 module.exports = router;

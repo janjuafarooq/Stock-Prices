@@ -12,7 +12,17 @@ describe('/components/main/Main.component.js', () => {
         );
     });
 
-    it('renders without crashing', () => {
+    it('it should render without crashing', () => {
         expect(main).toExist();
+    });
+
+    it('it should update companies to search', () => {
+        main.getCompanies('apple');
+        expect(main.state.searchText).toEqual('apple');
+    });
+
+    it('it should update stock symbol to search', () => {
+        main.getStockData('aapl');
+        expect(main.state.symbol).toEqual('aapl');
     });
 });

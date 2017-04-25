@@ -20,7 +20,7 @@ export default class SearchBarComponent extends Component {
         } else {
             this.setState({
                 showError: true
-            })
+            });
         }
     }
 

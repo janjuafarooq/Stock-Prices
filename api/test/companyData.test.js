@@ -36,7 +36,6 @@ describe('Get Company Data', () => {
             });
     });
 
-
     it('it should get companies with page size 20', (done) => {
         chai.request(server)
             .get('/companyData/a?page=1&pageSize=20')

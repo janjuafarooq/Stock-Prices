@@ -8,6 +8,7 @@ export default class GraphComponent extends Component {
         super(props);
 
         this.state = {
+            symbol: props.symbol,
             historicalData: []
         };
     }

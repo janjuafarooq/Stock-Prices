@@ -14,7 +14,7 @@
     "jade": "~1.11.0",
     "mongoose-pagination": "^1.0.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.2"
+    "yahoo-finance": "^0.2.16"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -22,7 +22,6 @@
     "chai-sorted": "^0.1.0",
     "mocha": "^3.3.0",
     "mongoose": "^4.9.5",
-    "nodemon": "^1.11.0",
-    "yahoo-finance": "^0.2.16"
+    "nodemon": "^1.11.0"
   }
 }
