@@ -7,10 +7,10 @@
 
 ### MongoDB and CSV files
 
-1. Follow the instructions at https://docs.mongodb.com/manual/installation/ to install mongodb locally on your machine
+1. Follow the instructions at https://docs.mongodb.com/manual/administration/install-community/ to install the mongodb locally on your machine.
 2. Download the three csv files from http://www.nasdaq.com/screening/company-list.aspx and place them in the database folder where the importcsv.sh script is located
 3. Run mongodb locally with the command `./mongod` inside of the mongo/bin folder where it was installed. Leave this terminal window running.
-4. Run importcsv.sh from your terminal with the command `./importcsv.sh` to add the files to the database (you hay have to run `chmod +x importcsv.sh` to get it to work)
+4. Run importcsv.sh from your terminal with the command `./importcsv.sh` to add the csv files to the database (you may have to run `chmod +x importcsv.sh` to get it to work). Sample csv files can be downloaded at http://www.nasdaq.com/screening/company-list.aspx
 
 Optional:
 I prefer to keep mongodb installed at database/mongo and a separate folder for the data in database/mongo-data.  Then I simply run `./mongo/bin/mongod --dbpath ./mongo-data` from the database folder and all table information is routed into the mongo-data folder. Robomongo is a nice GUI for viewing the information https://robomongo.org/ 
