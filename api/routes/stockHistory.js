@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const stockHistoryControllers = require('../models/stockHistoryModel.js');
+const stockHistoryModel = require('../models/stockHistoryModel.js');
 
 router.get('/:symbol', function (req, res, next) {
-    stockHistoryControllers(req.params.symbol)
+    stockHistoryModel(req.params.symbol)
         .then(response => {
             res.send(response);
         })

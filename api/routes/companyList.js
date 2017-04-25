@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const companyListController = require('../models/companyListModel.js');
+const companyListModel = require('../models/companyListModel.js');
 
 router.get('/', function (req, res, next) {
-    companyListController()
+    companyListModel()
         .then(response => {
             res.send(response);
         })
