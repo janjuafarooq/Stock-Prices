@@ -36,9 +36,7 @@ describe('/components/searchResults/SearchResults.component.js', () => {
                 value: 1
             }
         };
-        fetchMock
-            .mock('/companyData/apple?page=2&pageSize=10', 'GET', {});
-
+        fetchMock.mock({ matcher: '/companyData/apple?page=2&pageSize=10', response: { "data": [{}], "pages": null, "count": null } });
         searchResults.instance().updatePage(e);
         expect(fetchMock.called('/companyData/apple?page=2&pageSize=10')).toBe(true);
     });

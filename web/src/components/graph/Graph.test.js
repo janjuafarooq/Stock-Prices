@@ -25,5 +25,4 @@ describe('/components/graph/Graph.component.js', () => {
         graph.setProps({ symbol: "goog" });
         expect(receivePropsSpy.calledOnce).toBe(true);
     });
-
 });
