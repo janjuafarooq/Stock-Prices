@@ -6,7 +6,7 @@ router.use('/companyData', require('./companyData'));
 router.use('/companylist', require('./companyList'));
 
 router.get('/', function (req, res, next) {
-    res.render('index', { title: 'Stock Price Api' });
+    res.status(403).json({'message': 'Not allowed'});
 });
 
 module.exports = router;
