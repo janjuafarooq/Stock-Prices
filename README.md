@@ -40,3 +40,7 @@ Warning: Accessing PropTypes via the main React package is deprecated. Use the p
 Warning: Portal: React.createClass is deprecated and will be removed in version 16. Use plain JavaScript classes instead. If you're not yet ready to migrate, create-react-class is available on npm as a drop-in replacement.
 
 Warning: React.__spread is deprecated and should not be used. Use Object.assign directly or another helper function with similar semantics. You may be seeing this warning due to your compiler. See https://fb.me/react-spread-deprecation for more details.
+
+### Example
+Once everything is setup and configured, this is an example of what the UI will display:
+![Alt text](http://i.imgur.com/wtCf7mi.png)
