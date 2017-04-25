@@ -17,7 +17,7 @@ I prefer to keep mongodb installed at database/mongo and a separate folder for t
 
 Here is what that structure looks like:
 
-![Alt text](http://i.imgur.com/lTUQjUk.png)
+![Alt text](http://i.imgur.com/uFcV9pr.png)
 
 ### Backend Server
 
