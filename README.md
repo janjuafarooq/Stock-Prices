@@ -43,4 +43,4 @@ Warning: React.__spread is deprecated and should not be used. Use Object.assign 
 
 ### Example
 Once everything is setup and configured, this is an example of what the UI will display:
-![Alt text](http://i.imgur.com/wtCf7mi.png)
+![Alt text](http://i.imgur.com/NQwKQ7S.png)
