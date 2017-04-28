@@ -18,7 +18,7 @@ export function GraphTemplate(component) {
     ];
 
     return (
-        <div>
+        <div style={{ marginTop: '30px' }}>
             {component.props.error &&
                 <h3 style={styles.error}>Could not get stock history for {component.props.symbol}</h3>
             }

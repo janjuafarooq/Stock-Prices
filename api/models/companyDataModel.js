@@ -15,6 +15,14 @@ module.exports = (symbol, page, pageSize) => {
                 })
                 .sort({ Name: 1 })
                 .paginate(page, pageSize, function (err, data, total) {
+                    data = data.map((item) => {
+                        return {
+                            Name: item.Name,
+                            Symbol: item.Symbol.replace(/\./g, '-'),
+                            Sector: item.Sector,
+                            industry: item.industry
+                        }
+                    });
                     resolve({
                         data: data,
                         pages: Math.ceil(total / pageSize),

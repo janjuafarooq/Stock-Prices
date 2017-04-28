@@ -10,7 +10,7 @@ module.exports = () => {
                     data = data.map((item) => {
                         return {
                             Name: item.Name,
-                            Symbol: item.Symbol
+                            Symbol: item.Symbol.replace(/\./g, '-')
                         }
                     });
                     resolve(data);
