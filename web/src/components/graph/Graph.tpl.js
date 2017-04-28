@@ -5,7 +5,7 @@ import styles from './Graph.style.js'
 export function GraphTemplate(component) {
     const data = [
         {
-            values: component.state.historicalData.map(item => {
+            values: component.props.historicalData.map(item => {
                 return {
                     x: new Date(item.date),
                     open: item.open,
@@ -19,10 +19,10 @@ export function GraphTemplate(component) {
 
     return (
         <div>
-            {component.state.error &&
+            {component.props.error &&
                 <h3 style={styles.error}>Could not get stock history for {component.props.symbol}</h3>
             }
-            {component.state.historicalData.length > 0 &&
+            {component.props.historicalData.length > 0 &&
                 <CandlestickChart
                     data={data}
                     width={800}
@@ -32,7 +32,7 @@ export function GraphTemplate(component) {
                     yAxisOffset={-10}
                     fillUp={(value) => '#32CD32'}
                     fillDown={(value) => '#DC143C'}
-                    title={"Historical data for " + component.state.symbol}
+                    title={"Historical data for " + component.props.symbol}
                 />
             }
             <div ref={(element) => { component.bottomOfGraph = element; }}></div>

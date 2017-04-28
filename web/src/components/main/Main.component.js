@@ -1,25 +1,80 @@
 import { Component } from 'react';
 import { MainTemplate } from './Main.tpl.js';
-import config from '../../config.js'
+import { getCompanyData } from '../../services/companyDataService.js';
+import { getStockHistory } from '../../services/stockHistoryService.js';
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
-    this.updateSearchText = this.updateSearchText.bind(this);
-    this.updateSymbol = this.updateSymbol.bind(this);
+
+    this.searchForCompanies = this.searchForCompanies.bind(this);
+    this.showGraph = this.showGraph.bind(this);
+    this.updatePage = this.updatePage.bind(this);
+
     this.state = {
-      searchText: null,
-      symbol: null,
-      pageSize: config.pageSize
+      companies: {
+        searchResults: [],
+        currentPage: 1,
+        noResults: false
+      },
+      stockHistory: {
+        historicalData: [],
+        error: false
+      }
     };
   }
 
-  updateSearchText(text) {
-    this.setState({ searchText: text });
+  searchForCompanies(textToSearch, page) {
+    const cur = page || 1;
+    getCompanyData(textToSearch, cur, this.props.pageSize)
+      .then((res) => {
+        this.setState({
+          companies: {
+            searchText: textToSearch,
+            searchResults: res.data,
+            totalCount: res.count,
+            pages: res.pages,
+            currentPage: cur,
+            noResults: false
+          }
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          companies: {
+            searchResults: [],
+            noResults: true
+          }
+        });
+      });
   }
 
-  updateSymbol(symbol) {
-    this.setState({ symbol: symbol });
+  updatePage(nextPage) {
+    this.searchForCompanies(this.state.companies.searchText, nextPage);
+  }
+
+  showGraph(symbol) {
+    if (this.state.stockHistory.symbol !== symbol) {
+      getStockHistory(symbol)
+        .then((res) => {
+          this.setState({
+            stockHistory: {
+              symbol: symbol,
+              historicalData: res,
+              error: false
+            }
+          });
+        })
+        .catch((error) => {
+          this.setState({
+            stockHistory: {
+              symbol: symbol,
+              historicalData: [],
+              error: true
+            }
+          });
+        });
+    }
   }
 
   render() {

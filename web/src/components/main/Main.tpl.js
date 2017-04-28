@@ -6,17 +6,18 @@ import styles from './Main.style.js'
 
 export function MainTemplate(component) {
     const searchBarProps = {
-        updateSearchText: component.updateSearchText
+        searchForCompanies: component.searchForCompanies
     };
 
     const searchResultsProps = {
-        pageSize: component.state.pageSize,
-        searchText: component.state.searchText,
-        updateSymbol: component.updateSymbol
+        pageSize: component.props.pageSize,
+        showGraph: component.showGraph,
+        updatePage: component.updatePage,
+        ...component.state.companies
     };
 
     const graphProps = {
-        symbol: component.state.symbol
+        ...component.state.stockHistory
     }
 
     return (

@@ -3,9 +3,9 @@ import { Table, Button } from 'react-bootstrap';
 import styles from './SearchResults.style.js';
 
 export function SearchResultsTemplate(component) {
-    const searchResults = component.state.searchResults.map((result, index) => {
+    const searchResults = component.props.searchResults.map((result, index) => {
         return (
-            <tr key={index} onClick={() => component.updateSymbol(result.Symbol)} style={{ cursor: 'pointer' }}>
+            <tr key={index} onClick={() => component.showGraph(result.Symbol)} style={{ cursor: 'pointer' }}>
                 <td style={styles.stockRow}> {result.Symbol}</td>
                 <td style={styles.stockRow}>{result.Name}</td>
                 <td style={styles.stockRow}>{result.Sector}</td>
@@ -17,13 +17,13 @@ export function SearchResultsTemplate(component) {
     return (
         <div>
             {
-                component.state.noResults &&
+                component.props.noResults &&
                 <div>
                     No results found
                 </div>
             }
             {
-                component.state.searchResults.length > 0 &&
+                component.props.searchResults.length > 0 &&
                 <div>
                     <h4 style={styles.instructions}>Select a row to view historical data</h4>
                     <Table bordered hover style={styles.table}>
@@ -41,12 +41,12 @@ export function SearchResultsTemplate(component) {
                     </Table>
                     <span>
                         {
-                            component.state.currentPage > 1 &&
+                            component.props.currentPage > 1 &&
                             <Button style={styles.pageButtons} value={-1} onClick={component.updatePage} className="btn" name={"previous-page"}>Previous Page</Button>
                         }
                         {component.state.resultsText}
                         {
-                            component.state.currentPage < component.state.pages &&
+                            component.props.currentPage < component.props.pages &&
                             <Button style={styles.pageButtons} value={1} onClick={component.updatePage} className="btn" name={"next-page"}>Next Page</Button>
                         }
                     </span>
