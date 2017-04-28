@@ -43,7 +43,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
     });
 
     it('it should add text to searchbar and should not auto search by default', () => {
-        const textToSearch = 'nalgene'
+        const textToSearch = 'nalgene';
         const searchBar = setup();
         const input = searchBar.find('input').at(0);
         input.simulate('keyPress', { target: { value: textToSearch } });
