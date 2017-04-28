@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 import styles from './SearchResults.style.js';
 
-export function SearchResultsTemplate(component) {
+export const SearchResultsTemplate = (component) => {
     const searchResults = component.props.searchResults.map((result, index) => {
         return (
             <tr key={index} onClick={() => component.showGraph(result.Symbol)} style={{ cursor: 'pointer' }}>

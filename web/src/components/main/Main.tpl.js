@@ -4,7 +4,7 @@ import SearchResults from '../searchResults/SearchResults.component.js';
 import Graph from '../graph/Graph.component.js';
 import styles from './Main.style.js'
 
-export function MainTemplate(component) {
+export const MainTemplate = (component) => {
     const searchBarProps = {
         searchForCompanies: component.searchForCompanies
     };

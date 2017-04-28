@@ -1,4 +1,4 @@
-export function getStockHistory(symbol) {
+export const getStockHistory = (symbol) => {
     return new Promise(
         (resolve, reject) => {
             const url = '/stockHistory/' + symbol;

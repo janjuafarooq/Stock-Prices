@@ -1,4 +1,4 @@
-export function getCompanyData(symbol, page, pageSize) {
+export const getCompanyData = (symbol, page, pageSize) => {
     return new Promise(
         (resolve, reject) => {
             const url = '/companyData/' + symbol + '?page=' + page + '&pageSize=' + pageSize;

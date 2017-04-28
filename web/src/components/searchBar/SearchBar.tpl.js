@@ -2,7 +2,7 @@ import React from 'react';
 import { InputGroup, Button } from 'react-bootstrap';
 import styles from './SearchBar.style.js'
 
-export function SearchBarTemplate(component) {
+export const SearchBarTemplate = (component) => {
     return (
         <div className="col-sm-8" style={styles.searchBar}>
             <h2 style={styles.titleText}>Search for companies</h2>

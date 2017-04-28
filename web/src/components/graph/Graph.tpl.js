@@ -2,7 +2,7 @@ import React from 'react';
 import { CandlestickChart } from 'react-d3';
 import styles from './Graph.style.js'
 
-export function GraphTemplate(component) {
+export const GraphTemplate = (component) => {
     const data = [
         {
             values: component.props.historicalData.map(item => {
@@ -35,7 +35,6 @@ export function GraphTemplate(component) {
                     title={"Historical data for " + component.props.symbol}
                 />
             }
-            <div ref={(element) => { component.bottomOfGraph = element; }}></div>
         </div>
     );
 }

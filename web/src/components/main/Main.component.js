@@ -64,6 +64,7 @@ export default class Main extends Component {
               error: false
             }
           });
+          window.scrollTo(0, document.body.scrollHeight);
         })
         .catch((error) => {
           this.setState({
