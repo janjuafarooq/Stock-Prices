@@ -40,26 +40,8 @@ describe('/components/main/Main.component.js', () => {
         const main = setup();
         const responseLength = generateNumberBetween1AndN(10);
         fetchMock.mock({ matcher: '/stockHistory/' + textToSearch, response: Array(responseLength).fill({}) });
-        return main.instance().showGraph(textToSearch)
-            .then(() => {
-                expect(fetchMock.called('/stockHistory/' + textToSearch)).toBe(true);
-                expect(main.instance().state.stockHistory.historicalData.length).toBe(responseLength);
-                expect(main.state().stockHistory.symbol).toBe(textToSearch);
-                expect(main.state().stockHistory.error).toBe(false);
-            });
-    });
-
-    it('it should show an error when the stock history call fails', () => {
-        const textToSearch = generateRandomString();
-        const main = setup();
-        fetchMock.mock({ matcher: '/stockHistory/' + textToSearch, response: 404 });
-        return main.instance().showGraph(textToSearch)
-            .catch(() => {
-                expect(fetchMock.called('/stockHistory/' + textToSearch)).toBe(true);
-                expect(main.instance().state.stockHistory.historicalData.length).toBe(0);
-                expect(main.state().stockHistory.symbol).toBe(textToSearch);
-                expect(main.state().stockHistory.error).toBe(true);
-            });
+        main.instance().showGraph(textToSearch)
+        expect(fetchMock.called('/stockHistory/' + textToSearch)).toBe(true);
     });
 
     it('it should get company data when searching for companies', () => {
@@ -72,29 +54,8 @@ describe('/components/main/Main.component.js', () => {
             matcher: '/companyData/' + symbolToSearch + '?page=' + main.state().companies.currentPage + '&pageSize=' + main.instance().props.pageSize,
             response: { "data": Array(responseSize).fill({}), "pages": responsePages, "count": responseCount }
         });
-        return main.instance().searchForCompanies(symbolToSearch)
-            .then(() => {
-                expect(fetchMock.called('/companyData/' + symbolToSearch + '?page=' + main.state().companies.currentPage + '&pageSize=' + main.instance().props.pageSize)).toBe(true);
-                expect(main.state().companies.searchText).toBe(symbolToSearch);
-                expect(main.state().companies.searchResults.length).toBe(responseSize);
-                expect(main.state().companies.pages).toBe(responsePages);
-                expect(main.state().companies.totalCount).toBe(responseCount);
-                expect(main.state().companies.noResults).toBe(false);
-            });
-    });
-
-    it('it should show an error when the companies call fails', () => {
-        const symbolToSearch = generateRandomString();
-        const main = setup();
-        fetchMock.mock({
-            matcher: '/companyData/' + symbolToSearch + '?page=' + main.state().companies.currentPage + '&pageSize=' + main.instance().props.pageSize,
-            response: 400
-        });
-        return main.instance().searchForCompanies(symbolToSearch)
-            .catch(() => {
-                expect(main.state().companies.searchResults.length).toBe(0);
-                expect(main.state().companies.noResults).toBe(true);
-            });
+        main.instance().searchForCompanies(symbolToSearch)
+        expect(fetchMock.called('/companyData/' + symbolToSearch + '?page=' + main.state().companies.currentPage + '&pageSize=' + main.instance().props.pageSize)).toBe(true);
     });
 
     it('it should get company data when changing pages', () => {

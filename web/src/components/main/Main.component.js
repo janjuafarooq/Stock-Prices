@@ -27,65 +27,55 @@ export default class Main extends Component {
 
   searchForCompanies(textToSearch, page) {
     const cur = page || 1;
-    return new Promise(
-      (resolve, reject) => {
-        getCompanyData(textToSearch, cur, this.props.pageSize)
-          .then((res) => {
-            this.setState({
-              companies: {
-                searchText: textToSearch,
-                searchResults: res.data,
-                totalCount: res.count,
-                pages: res.pages,
-                currentPage: cur,
-                noResults: false
-              }
-            });
-            resolve();
-          })
-          .catch((error) => {
-            this.setState({
-              companies: {
-                searchResults: [],
-                noResults: true,
-                currentPage: 1
-              }
-            });
-            reject(error);
-          });
+    getCompanyData(textToSearch, cur, this.props.pageSize)
+      .then((res) => {
+        this.setState({
+          companies: {
+            searchText: textToSearch,
+            searchResults: res.data,
+            totalCount: res.count,
+            pages: res.pages,
+            currentPage: cur,
+            noResults: false
+          }
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          companies: {
+            searchResults: [],
+            noResults: true,
+            currentPage: 1
+          }
+        });
       });
   }
 
   updatePage(nextPage) {
-    return this.searchForCompanies(this.state.companies.searchText, nextPage);
+    this.searchForCompanies(this.state.companies.searchText, nextPage);
   }
 
   showGraph(symbol) {
     if (this.state.stockHistory.symbol !== symbol) {
-      return new Promise(
-        (resolve, reject) => {
-          getStockHistory(symbol)
-            .then((res) => {
-              this.setState({
-                stockHistory: {
-                  symbol: symbol,
-                  historicalData: res,
-                  error: false
-                }
-              });
-              window.scrollTo(0, document.body.scrollHeight);
-              resolve();
-            })
-            .catch((error) => {
-              this.setState({
-                stockHistory: {
-                  symbol: symbol,
-                  historicalData: [],
-                  error: true
-                }
-              });
-              reject(error);
-            });
+      getStockHistory(symbol)
+        .then((res) => {
+          this.setState({
+            stockHistory: {
+              symbol: symbol,
+              historicalData: res,
+              error: false
+            }
+          });
+          window.scrollTo(0, document.body.scrollHeight);
+        })
+        .catch((error) => {
+          this.setState({
+            stockHistory: {
+              symbol: symbol,
+              historicalData: [],
+              error: true
+            }
+          });
         });
     }
   }
