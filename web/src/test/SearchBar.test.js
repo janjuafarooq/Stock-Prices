@@ -1,8 +1,9 @@
 import React from 'react';
-import SearchBar from './SearchBar.component.js';
+import SearchBar from '../components/SearchBar/SearchBar.component.js';
 import expect from 'expect';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
+import { generateRandomString } from './testUtilities.js';
 
 describe('/components/SearchBar/SearchBar.component.js', () => {
     const toggleAutocompleteSpy = expect.spyOn(SearchBar.prototype, "toggleAutocomplete");
@@ -43,7 +44,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
     });
 
     it('it should add text to searchbar and should not auto search by default', () => {
-        const textToSearch = 'nalgene';
+        const textToSearch = generateRandomString();
         const searchBar = setup();
         const input = searchBar.find('input').at(0);
         input.simulate('keyPress', { target: { value: textToSearch } });
@@ -53,13 +54,13 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
 
 
     it('it should search when hitting the search button or enter', () => {
-        const textToSearch = 'yahoo';
+        const textToSearch = generateRandomString();
         const searchBar = setup();
         const input = searchBar.find('input').at(0);
         input.simulate('keyPress', { target: { value: textToSearch } });
         searchBar.find('Button').simulate('click');
         input.simulate('keyPress', { charCode: 13, target: { value: textToSearch }, preventDefault: () => { } });
-
+        expect(searchForCompaniesSpy.lastCall.args).toEqual(textToSearch);
         expect(searchForCompaniesSpy.calledTwice).toBe(true);
     })
 
@@ -71,7 +72,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
     });
 
     it('it should search automatically when auto complete is enabled', () => {
-        const textToSearch = 'microsoft';
+        const textToSearch = generateRandomString();
         const searchBar = setup();
         searchBar.setState({
             autocomplete: true
@@ -80,5 +81,6 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         input.simulate('keyPress', { target: { value: textToSearch } });
         expect(searchBar.state().searchText).toEqual(textToSearch);
         expect(searchForCompaniesSpy.called).toBe(true);
+        expect(searchForCompaniesSpy.lastCall.args).toEqual(textToSearch);
     });
 });

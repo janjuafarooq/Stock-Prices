@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Graph from './Graph.component.js';
+import Graph from '../components/Graph/Graph.component.js';
 import expect from 'expect';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 
 describe('/components/graph/Graph.component.js', () => {
     const setup = propOverrides => {
@@ -44,7 +42,7 @@ describe('/components/graph/Graph.component.js', () => {
     });
 
     it('it should display a chart when it has historical data', () => {
-        const graph = setup({ historicalData: new Array(10) });
+        const graph = setup({ historicalData: Array(10).fill({}) });
         expect(graph.instance().props.historicalData.length).toBe(10);
         const chart = graph.find('CandleStickChart').length;
         expect(chart).toExist();

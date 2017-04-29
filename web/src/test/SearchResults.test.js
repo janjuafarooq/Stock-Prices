@@ -1,9 +1,9 @@
 import React from 'react';
-import SearchResults from './SearchResults.component.js';
+import SearchResults from '../components/SearchResults/SearchResults.component.js';
 import expect from 'expect';
-import fetchMock from 'fetch-mock';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
+import { generateRandomString, generateNumberBetween1AndN } from './testUtilities.js';
 
 describe('/components/searchResults/SearchResults.component.js', () => {
     const componentWillReceivePropsSpy = sinon.spy(SearchResults.prototype, 'componentWillReceiveProps');
@@ -17,10 +17,10 @@ describe('/components/searchResults/SearchResults.component.js', () => {
         const props = {
             searchResults: [],
             currentPage: 1,
-            pageSize: 10,
+            pageSize: generateNumberBetween1AndN(100),
             noResults: false,
             updatePage: updatePageSpy,
-            showGraphSpy: showGraphSpy,
+            showGraph: showGraphSpy,
             ...propOverrides
         };
         const component = shallow(
@@ -45,32 +45,40 @@ describe('/components/searchResults/SearchResults.component.js', () => {
         expect(nextButton).toNotExist();
     });
 
-    it('it should should the next button when current page is less than total pages', () => {
+    it('it should the next button when current page is less than total pages', () => {
         const searchResults = setup({ pages: 2, searchResults: new Array(5) });
         const nextButton = searchResults.find('[name="next-page"]').length;
         expect(nextButton).toExist();
     });
 
-    it('it should should the previous button when current page is greater than total pages', () => {
-        const searchResults = setup({ pages: 3, currentPage: 2, searchResults: new Array(5) });
+    it('it should the previous button when current page is greater than total pages', () => {
+        const searchResults = setup({ pages: 3, currentPage: 2, searchResults: new Array(1) });
         const previousButton = searchResults.find('[name="previous-page"]').length;
         expect(previousButton).toExist();
     });
 
-    it('it should should update the page when next or previous buttons are clicked', () => {
-        const searchResults = setup({ pages: 3, currentPage: 2, searchResults: new Array(5) });
+    it('it should update the page when next or previous buttons are clicked', () => {
+        const searchResults = setup({ pages: 3, currentPage: 2, searchResults: new Array(1) });
         const previousButton = searchResults.find('[name="previous-page"]');
         const nextButton = searchResults.find('[name="next-page"]');
         previousButton.simulate('click', { target: { value: previousButton.props().value } });
         nextButton.simulate('click', { target: { value: nextButton.props().value } });
         expect(updatePageSpy.calledTwice).toBe(true);
-        searchResults.setProps({ test: false });
     });
 
-    it('it should should update search text when receiving new props', () => {
+    it('it should update search text when receiving new props', () => {
         const searchResults = setup();
         searchResults.setProps({ pages: 3, currentPage: 2, totalCount: 23, searchResults: new Array(5) });
         expect(componentWillReceivePropsSpy.calledOnce).toBe(true);
         expect(searchResults.contains('Showing results ' + (searchResults.instance().props.pageSize + 1) + '-' + searchResults.instance().props.pageSize * 2 + ' of ' + searchResults.instance().props.totalCount)).toBe(true);
     });
+
+    it('it should show the graph when a row is clicked', () => {
+        const searchResults = setup();
+        searchResults.setProps({ pages: 1, searchResults: Array(1).fill({ "Name": "name", "Symbol": "symbol", "Sector": "sector", "industry": "industry" }) });
+        const companyRow = searchResults.find('tr').at(1);
+        companyRow.simulate('click');
+        expect(showGraphSpy.calledOnce).toBe(true);
+    });
+
 });
