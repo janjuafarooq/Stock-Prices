@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { SearchBarTemplate } from './SearchBar.tpl.js';
+import PropTypes from 'prop-types';
 
 export default class SearchBarComponent extends Component {
     constructor(props) {
@@ -57,4 +58,8 @@ export default class SearchBarComponent extends Component {
     render() {
         return SearchBarTemplate(this);
     }
-}
+};
+
+SearchBarComponent.propTypes = {
+    searchForCompanies: PropTypes.func.isRequired
+};

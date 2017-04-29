@@ -3,7 +3,8 @@ import { Table, Button } from 'react-bootstrap';
 import styles from './SearchResults.style.js';
 
 export const SearchResultsTemplate = (component) => {
-    const searchResults = component.props.searchResults.map((result, index) => {
+    const { noResults, currentPage, pages, searchResults } = component.props;
+    const companyRows = searchResults.map((result, index) => {
         return (
             <tr key={index} onClick={() => component.showGraph(result.Symbol)} style={{ cursor: 'pointer' }}>
                 <td style={styles.stockRow}> {result.Symbol}</td>
@@ -17,13 +18,13 @@ export const SearchResultsTemplate = (component) => {
     return (
         <div>
             {
-                component.props.noResults &&
+                noResults &&
                 <div>
                     No results found
                 </div>
             }
             {
-                component.props.searchResults.length > 0 &&
+                searchResults.length > 0 &&
                 <div>
                     <h4 style={styles.instructions}>Select a row to view historical data</h4>
                     <Table bordered hover style={styles.table}>
@@ -36,17 +37,17 @@ export const SearchResultsTemplate = (component) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {searchResults}
+                            {companyRows}
                         </tbody>
                     </Table>
                     <span>
                         {
-                            component.props.currentPage > 1 &&
+                            currentPage > 1 &&
                             <Button style={styles.pageButtons} value={-1} onClick={component.updatePage} className="btn" name={"previous-page"}>Previous Page</Button>
                         }
                         {component.state.resultsText}
                         {
-                            component.props.currentPage < component.props.pages &&
+                            currentPage < pages &&
                             <Button style={styles.pageButtons} value={1} onClick={component.updatePage} className="btn" name={"next-page"}>Next Page</Button>
                         }
                     </span>

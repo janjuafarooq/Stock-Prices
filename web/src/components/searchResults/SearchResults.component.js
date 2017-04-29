@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { SearchResultsTemplate } from './SearchResults.tpl.js';
+import PropTypes from 'prop-types';
 
 export default class SearchResultsComponent extends Component {
     constructor(props) {
@@ -36,4 +37,16 @@ export default class SearchResultsComponent extends Component {
     render() {
         return SearchResultsTemplate(this);
     }
+};
+
+SearchResultsComponent.propTypes = {
+    currentPage: PropTypes.number.isRequired,
+    noResults: PropTypes.bool.isRequired,
+    pageSize: PropTypes.number.isRequired,
+    searchResults: PropTypes.array.isRequired,
+    showGraph: PropTypes.func.isRequired,
+    updatePage: PropTypes.func.isRequired,
+    searchText: PropTypes.string,
+    totalCount: PropTypes.number,
+    pages: PropTypes.number
 }

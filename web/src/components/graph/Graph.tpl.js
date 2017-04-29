@@ -3,9 +3,10 @@ import { CandlestickChart } from 'react-d3';
 import styles from './Graph.style.js'
 
 export const GraphTemplate = (component) => {
+    const { historicalData, symbol, error } = component.props;
     const data = [
         {
-            values: component.props.historicalData.map(item => {
+            values: historicalData.map(item => {
                 return {
                     x: new Date(item.date),
                     open: item.open,
@@ -19,10 +20,10 @@ export const GraphTemplate = (component) => {
 
     return (
         <div style={{ marginTop: '30px' }}>
-            {component.props.error &&
-                <h3 style={styles.error}>Could not get stock history for {component.props.symbol}</h3>
+            {error &&
+                <h3 style={styles.error}>Could not get stock history for {symbol}</h3>
             }
-            {component.props.historicalData.length > 0 &&
+            {historicalData.length > 0 &&
                 <CandlestickChart
                     data={data}
                     width={800}
@@ -32,7 +33,7 @@ export const GraphTemplate = (component) => {
                     yAxisOffset={-10}
                     fillUp={(value) => '#32CD32'}
                     fillDown={(value) => '#DC143C'}
-                    title={"Historical data for " + component.props.symbol}
+                    title={"Historical data for " + symbol}
                 />
             }
         </div>

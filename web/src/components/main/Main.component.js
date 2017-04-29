@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { MainTemplate } from './Main.tpl.js';
 import { getCompanyData } from '../../services/companyDataService.js';
 import { getStockHistory } from '../../services/stockHistoryService.js';
+import PropTypes from 'prop-types';
 
 export default class Main extends Component {
   constructor(props) {
@@ -81,4 +82,8 @@ export default class Main extends Component {
   render() {
     return MainTemplate(this);
   }
-}
+};
+
+Main.propTypes = {
+  pageSize: PropTypes.number.isRequired,
+};
