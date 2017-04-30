@@ -1,6 +1,5 @@
 import React from 'react';
 import { InputGroup, Button } from 'react-bootstrap';
-import styles from './SearchBar.style.js'
 import '../../styles/css/searchBar.css';
 
 export const SearchBarTemplate = (component) => {
