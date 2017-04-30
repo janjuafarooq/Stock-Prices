@@ -1,7 +1,7 @@
 export const getCompanyData = (symbol, page, pageSize) => {
     return new Promise(
         (resolve, reject) => {
-            const url = '/companyData/' + symbol + '?page=' + page + '&pageSize=' + pageSize;
+            const url = `/companyData/${symbol}?page=${page}&pageSize=${pageSize}`;
             const options = {
                 method: 'GET',
                 headers: {

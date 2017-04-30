@@ -2,22 +2,30 @@ import React from 'react';
 import Main from '../components/Main/Main.component.js';
 import expect from 'expect';
 import { shallow } from 'enzyme';
-import fetchMock from 'fetch-mock';
+import sinon from 'sinon';
 import { generateRandomString, generateNumberBetween1AndN } from './testUtilities.js';
+import * as companyDataService from '../services/companyDataService.js';
+import * as stockHistoryService from '../services/stockHistoryService.js';
 
 describe('/components/main/Main.component.js', () => {
+    const getCompanyDataStub = sinon.stub(companyDataService, 'getCompanyData');
+    const getStockHistoryStub = sinon.stub(stockHistoryService, 'getStockHistory');
+
     const setup = propOverrides => {
-        fetchMock.restore();
         const props = {
             pageSize: generateNumberBetween1AndN(100),
             ...propOverrides
         };
-
         const component = shallow(
             <Main {...props} />
         );
         return component;
     };
+
+    afterEach(() => {
+        getCompanyDataStub.reset();
+        getStockHistoryStub.reset();
+    });
 
     it('it should render without crashing', () => {
         const main = setup();
@@ -45,7 +53,7 @@ describe('/components/main/Main.component.js', () => {
         const textToSearch = generateRandomString();
         const main = setup();
         const responseLength = generateNumberBetween1AndN(10);
-        fetchMock.mock({ matcher: '/stockHistory/' + textToSearch, response: Array(responseLength).fill({}) });
+        getStockHistoryStub.returns(Promise.resolve(Array(responseLength).fill({})));
         main.instance().showGraph(textToSearch);
         // There doesn't seem to be a way currently to spy on setState calls so 
         // using the setTimeout call is used to make sure the state has been updated.
@@ -54,7 +62,6 @@ describe('/components/main/Main.component.js', () => {
         // This same pattern is used for the other tests.
         setTimeout(() => {
             try {
-                expect(fetchMock.called('/stockHistory/' + textToSearch)).toBe(true);
                 expect(main.instance().state.stockHistory.historicalData.length).toBe(responseLength);
                 expect(main.state().stockHistory.symbol).toBe(textToSearch);
                 expect(main.state().stockHistory.error).toBe(false);
@@ -66,13 +73,14 @@ describe('/components/main/Main.component.js', () => {
     });
 
     it('it should show an error when the stock history call fails', (done) => {
+        getStockHistoryStub.returns(
+            Promise.reject({ status: 404 })
+        );
         const textToSearch = generateRandomString();
         const main = setup();
-        fetchMock.mock({ matcher: '/stockHistory/' + textToSearch, response: 404 });
         main.instance().showGraph(textToSearch);
         setTimeout(() => {
             try {
-                expect(fetchMock.called('/stockHistory/' + textToSearch)).toBe(true);
                 expect(main.instance().state.stockHistory.historicalData.length).toBe(0);
                 expect(main.state().stockHistory.symbol).toBe(textToSearch);
                 expect(main.state().stockHistory.error).toBe(true);
@@ -88,15 +96,13 @@ describe('/components/main/Main.component.js', () => {
         const responseSize = generateNumberBetween1AndN(10);
         const responsePages = generateNumberBetween1AndN(10);
         const responseCount = generateNumberBetween1AndN(10);
+        getCompanyDataStub.returns(
+            Promise.resolve({ "data": Array(responseSize).fill({}), "pages": responsePages, "count": responseCount })
+        );
         const main = setup();
-        fetchMock.mock({
-            matcher: '/companyData/' + symbolToSearch + '?page=' + main.state().companies.currentPage + '&pageSize=' + main.instance().props.pageSize,
-            response: { "data": Array(responseSize).fill({}), "pages": responsePages, "count": responseCount }
-        });
         main.instance().searchForCompanies(symbolToSearch);
         setTimeout(() => {
             try {
-                expect(fetchMock.called('/companyData/' + symbolToSearch + '?page=' + main.state().companies.currentPage + '&pageSize=' + main.instance().props.pageSize)).toBe(true);
                 expect(main.state().companies.searchText).toBe(symbolToSearch);
                 expect(main.state().companies.searchResults.length).toBe(responseSize);
                 expect(main.state().companies.pages).toBe(responsePages);
@@ -110,15 +116,13 @@ describe('/components/main/Main.component.js', () => {
     });
 
     it('it should show an error when the companies call fails', (done) => {
+        getCompanyDataStub.returns(Promise.reject({ response: 404 }));
         const symbolToSearch = generateRandomString();
         const main = setup();
-        fetchMock.mock({
-            matcher: '/companyData/' + symbolToSearch + '?page=' + main.state().companies.currentPage + '&pageSize=' + main.instance().props.pageSize,
-            response: 400
-        });
         main.instance().searchForCompanies(symbolToSearch);
         setTimeout(() => {
             try {
+                expect(getCompanyDataStub.calledOnce).toBe(true);
                 expect(main.state().companies.searchResults.length).toBe(0);
                 expect(main.state().companies.noResults).toBe(true);
                 done();

@@ -1,7 +1,7 @@
 export const getStockHistory = (symbol) => {
     return new Promise(
         (resolve, reject) => {
-            const url = '/stockHistory/' + symbol;
+            const url = `/stockHistory/${symbol}`;
             const options = {
                 method: 'GET',
                 headers: {

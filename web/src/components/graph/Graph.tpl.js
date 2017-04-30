@@ -33,7 +33,7 @@ export const GraphTemplate = (component) => {
                     yAxisOffset={-10}
                     fillUp={(value) => '#32CD32'}
                     fillDown={(value) => '#DC143C'}
-                    title={"Historical data for " + symbol}
+                    title={`Historical data for ${symbol}`}
                 />
             }
         </div>

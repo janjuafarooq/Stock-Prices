@@ -18,13 +18,13 @@ export default class SearchResultsComponent extends Component {
     }
 
     componentWillReceiveProps(props) {
-        let text = 'Showing results ' + (props.pageSize * (props.currentPage - 1) + 1) + '-'
+        let text = `Showing results ${(props.pageSize * (props.currentPage - 1) + 1)}-`
         if (props.currentPage < props.pages) {
             text += props.pageSize * props.currentPage;
         } else if (props.currentPage === props.pages) {
             text += props.totalCount;
         }
-        text += ' of ' + props.totalCount;
+        text += ` of ${props.totalCount}`;
         this.setState({
             resultsText: text
         });
