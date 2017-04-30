@@ -16,7 +16,6 @@
     "bootstrap": "^3.3.7",
     "mocha": "^3.3.0",
     "react": "^15.5.4",
-    "react-bootstrap": "^0.30.10",
     "react-d3": "^0.4.0",
     "react-dom": "^15.5.4"
   },
