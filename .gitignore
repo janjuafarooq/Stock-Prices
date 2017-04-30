@@ -8,3 +8,4 @@ npm-debug.log*
 database/mongo-data
 database/mongodb
 database/*.csv
+web/src/styles/css

@@ -1,0 +1,25 @@
+.searchResults {
+    .pageButtons {
+        margin: 0px 10px;
+    }
+    .instructions {
+        margin-bottom: 20px;
+    }
+    .headerRow {
+        th {
+            text-align: center;
+            vertical-align: middle;
+        }
+    }
+    .table {
+        max-width: none;
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+    .stockRow {
+        cursor: pointer;
+        td {
+            vertical-align: middle;
+        }
+    }
+}
