@@ -133,7 +133,7 @@ describe('/components/main/Main.component.js', () => {
     });
 
     it('it should get company data when changing pages', () => {
-        let nextPage = generateNumberBetween1AndN(5);
+        let nextPage = generateNumberBetween1AndN(5); 
         const searchForCompaniesSpy = expect.spyOn(Main.prototype, "searchForCompanies");
         const main = setup();
         main.instance().updatePage(nextPage);

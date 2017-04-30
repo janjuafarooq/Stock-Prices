@@ -1,5 +1,4 @@
 import React from 'react';
-import { Table, Button } from 'react-bootstrap';
 import '../../styles/css/searchResults.css';
 
 export const SearchResultsTemplate = (component) => {
@@ -27,7 +26,7 @@ export const SearchResultsTemplate = (component) => {
                 searchResults.length > 0 &&
                 <div>
                     <h4 className="instructions">Select a row to view historical data</h4>
-                    <Table bordered hover>
+                    <table className="table table-bordered table-hover">
                         <thead>
                             <tr className="headerRow">
                                 <th>Company Symbol</th>
@@ -39,16 +38,16 @@ export const SearchResultsTemplate = (component) => {
                         <tbody>
                             {companyRows}
                         </tbody>
-                    </Table>
+                    </table>
                     <span>
                         {
                             currentPage > 1 &&
-                            <Button className="btn pageButtons" value={-1} onClick={component.updatePage} name={"previous-page"}>Previous Page</Button>
+                            <button className="btn btn-default pageButtons" value={-1} onClick={component.updatePage} name={"previous-page"}>Previous Page</button>
                         }
                         {component.state.resultsText}
                         {
                             currentPage < pages &&
-                            <Button className="btn pageButtons" value={1} onClick={component.updatePage} name={"next-page"}>Next Page</Button>
+                            <button className="btn btn-default pageButtons" value={1} onClick={component.updatePage} name={"next-page"}>Next Page</button>
                         }
                     </span>
                 </div>

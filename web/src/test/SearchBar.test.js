@@ -62,7 +62,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         input.simulate('keyPress', { charCode: 13, target: { value: textToSearch }, preventDefault: () => { } });
         expect(searchForCompaniesSpy.lastCall.args).toEqual(textToSearch);
         expect(searchForCompaniesSpy.calledTwice).toBe(true);
-    })
+    });
 
     it('it should have auto complete enabled when clicked and call search', () => {
         const searchBar = setup();
