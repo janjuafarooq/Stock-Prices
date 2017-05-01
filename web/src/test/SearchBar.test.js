@@ -39,7 +39,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
     it('it should not search when there is no text entered', () => {
         const searchBar = setup();
         const input = searchBar.find('input').at(0);
-        searchBar.find('Button').simulate('click');
+        searchBar.find('button').simulate('click');
         expect(searchForCompaniesSpy.called).toBe(false);
     });
 
@@ -58,7 +58,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         const searchBar = setup();
         const input = searchBar.find('input').at(0);
         input.simulate('keyPress', { target: { value: textToSearch } });
-        searchBar.find('Button').simulate('click');
+        searchBar.find('button').simulate('click');
         input.simulate('keyPress', { charCode: 13, target: { value: textToSearch }, preventDefault: () => { } });
         expect(searchForCompaniesSpy.lastCall.args).toEqual(textToSearch);
         expect(searchForCompaniesSpy.calledTwice).toBe(true);
