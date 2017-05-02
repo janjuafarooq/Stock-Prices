@@ -9,3 +9,4 @@ database/mongo-data
 database/mongodb
 database/*.csv
 web/src/styles/css
+.chrome/

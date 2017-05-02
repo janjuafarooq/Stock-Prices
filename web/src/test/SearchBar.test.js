@@ -52,7 +52,6 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         expect(searchForCompaniesSpy.called).toBe(false);
     });
 
-
     it('it should search when hitting the search button or enter', () => {
         const textToSearch = generateRandomString();
         const searchBar = setup();
