@@ -17,7 +17,7 @@ export default class SearchBarComponent extends Component {
 
     handleSearch() {
         if (this.state.searchText.length > 0) {
-            this.props.searchForCompanies(this.state.searchText);
+            this.props.searchForCompanies({ textToSearch: this.state.searchText });
         } else {
             this.setState({
                 showError: true

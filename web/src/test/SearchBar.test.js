@@ -59,7 +59,7 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         input.simulate('keyPress', { target: { value: textToSearch } });
         searchBar.find('button').simulate('click');
         input.simulate('keyPress', { charCode: 13, target: { value: textToSearch }, preventDefault: () => { } });
-        expect(searchForCompaniesSpy.lastCall.args).toEqual(textToSearch);
+        expect(searchForCompaniesSpy.lastCall.args[0].textToSearch).toEqual(textToSearch);
         expect(searchForCompaniesSpy.calledTwice).toBe(true);
     });
 
@@ -80,6 +80,6 @@ describe('/components/SearchBar/SearchBar.component.js', () => {
         input.simulate('keyPress', { target: { value: textToSearch } });
         expect(searchBar.state().searchText).toEqual(textToSearch);
         expect(searchForCompaniesSpy.called).toBe(true);
-        expect(searchForCompaniesSpy.lastCall.args).toEqual(textToSearch);
+        expect(searchForCompaniesSpy.lastCall.args[0].textToSearch).toEqual(textToSearch);
     });
 });

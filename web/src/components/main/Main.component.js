@@ -25,9 +25,8 @@ export default class Main extends Component {
     };
   }
 
-  searchForCompanies(textToSearch, page) {
-    const cur = page || 1;
-    getCompanyData(textToSearch, cur, this.props.pageSize)
+  searchForCompanies({ textToSearch, currentPage = 1 }) {
+    getCompanyData(textToSearch, currentPage, this.props.pageSize)
       .then((res) => {
         this.setState({
           companies: {
@@ -35,7 +34,7 @@ export default class Main extends Component {
             searchResults: res.data,
             totalCount: res.count,
             pages: res.pages,
-            currentPage: cur,
+            currentPage: currentPage,
             noResults: false
           }
         });
@@ -45,14 +44,14 @@ export default class Main extends Component {
           companies: {
             searchResults: [],
             noResults: true,
-            currentPage: 1
+            currentPage: currentPage
           }
         });
       });
   }
 
   updatePage(nextPage) {
-    this.searchForCompanies(this.state.companies.searchText, nextPage);
+    this.searchForCompanies({ textToSearch: this.state.companies.searchText, currentPage: nextPage });
   }
 
   showGraph(symbol) {

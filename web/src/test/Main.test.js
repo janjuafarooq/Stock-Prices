@@ -100,7 +100,7 @@ describe('/components/main/Main.component.js', () => {
             Promise.resolve({ "data": Array(responseSize).fill({}), "pages": responsePages, "count": responseCount })
         );
         const main = setup();
-        main.instance().searchForCompanies(symbolToSearch);
+        main.instance().searchForCompanies({ textToSearch: symbolToSearch });
         setTimeout(() => {
             try {
                 expect(main.state().companies.searchText).toBe(symbolToSearch);
@@ -119,7 +119,7 @@ describe('/components/main/Main.component.js', () => {
         getCompanyDataStub.returns(Promise.reject({ response: 404 }));
         const symbolToSearch = generateRandomString();
         const main = setup();
-        main.instance().searchForCompanies(symbolToSearch);
+        main.instance().searchForCompanies({ textToSearch: symbolToSearch });
         setTimeout(() => {
             try {
                 expect(getCompanyDataStub.calledOnce).toBe(true);
@@ -133,13 +133,13 @@ describe('/components/main/Main.component.js', () => {
     });
 
     it('it should get company data when changing pages', () => {
-        let nextPage = generateNumberBetween1AndN(5); 
+        let nextPage = generateNumberBetween1AndN(5);
         const searchForCompaniesSpy = expect.spyOn(Main.prototype, "searchForCompanies");
         const main = setup();
         main.instance().updatePage(nextPage);
-        expect(searchForCompaniesSpy.getLastCall().arguments[1]).toEqual(nextPage);
+        expect(searchForCompaniesSpy.getLastCall().arguments[0].currentPage).toEqual(nextPage);
         nextPage = generateNumberBetween1AndN(5);
         main.instance().updatePage(nextPage);
-        expect(searchForCompaniesSpy.getLastCall().arguments[1]).toEqual(nextPage);
+        expect(searchForCompaniesSpy.getLastCall().arguments[0].currentPage).toEqual(nextPage);
     });
 });
