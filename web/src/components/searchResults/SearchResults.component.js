@@ -5,14 +5,12 @@ import PropTypes from 'prop-types';
 export default class SearchResultsComponent extends Component {
     constructor(props) {
         super(props);
-        this.showGraph = this.showGraph.bind(this);
-        this.updatePage = this.updatePage.bind(this);
         this.state = {
             resultsText: ''
         };
     }
 
-    updatePage(e) {
+    updatePage = (e) => {
         const nextPage = this.props.currentPage + parseInt(e.target.value, 10);
         this.props.updatePage(nextPage);
     }
@@ -30,7 +28,7 @@ export default class SearchResultsComponent extends Component {
         });
     }
 
-    showGraph(symbol) {
+    showGraph = (symbol) => {
         this.props.showGraph(symbol);
     }
 
