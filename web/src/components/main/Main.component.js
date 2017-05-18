@@ -8,6 +8,10 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
 
+    this.searchForCompanies = this.searchForCompanies.bind(this);
+    this.showGraph = this.showGraph.bind(this);
+    this.updatePage = this.updatePage.bind(this);
+
     this.state = {
       companies: {
         searchResults: [],
@@ -21,7 +25,7 @@ export default class Main extends Component {
     };
   }
 
-  searchForCompanies = ({ textToSearch, currentPage = 1 }) => {
+  searchForCompanies({ textToSearch, currentPage = 1 }) {
     getCompanyData(textToSearch, currentPage, this.props.pageSize)
       .then((res) => {
         this.setState({
@@ -46,11 +50,11 @@ export default class Main extends Component {
       });
   }
 
-  updatePage = (nextPage) => {
+  updatePage(nextPage) {
     this.searchForCompanies({ textToSearch: this.state.companies.searchText, currentPage: nextPage });
   }
 
-  showGraph = (symbol) => {
+  showGraph(symbol) {
     if (this.state.stockHistory.symbol !== symbol) {
       getStockHistory(symbol)
         .then((res) => {

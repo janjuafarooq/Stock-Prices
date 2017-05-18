@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 export default class SearchBarComponent extends Component {
     constructor(props) {
         super(props);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.handleSearchTextChange = this.handleSearchTextChange.bind(this);
+        this.toggleAutocomplete = this.toggleAutocomplete.bind(this);
         this.state = {
             searchText: '',
             showError: false,
@@ -12,7 +15,7 @@ export default class SearchBarComponent extends Component {
         };
     }
 
-    handleSearch = () => {
+    handleSearch() {
         if (this.state.searchText.length > 0) {
             this.props.searchForCompanies({ textToSearch: this.state.searchText });
         } else {
@@ -22,7 +25,7 @@ export default class SearchBarComponent extends Component {
         }
     }
 
-    handleSearchTextChange = (event) => {
+    handleSearchTextChange(event) {
         const text = event.target.value;
         if (this.state.autocomplete) {
             this.setState(() => ({
@@ -45,7 +48,7 @@ export default class SearchBarComponent extends Component {
         }
     }
 
-    toggleAutocomplete = (event) => {
+    toggleAutocomplete(event) {
         const checked = event.target.checked;
         this.setState({
             autocomplete: checked
